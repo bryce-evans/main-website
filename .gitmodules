@@ -1,0 +1,3 @@
+[submodule "webgl-portals"]
+	path = webgl-portals
+	url = https://github.com/bryce-evans/webgl-portals
