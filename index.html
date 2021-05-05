@@ -10,70 +10,80 @@
 </head>
 
 <body>
-    <div class="header">
+    <div id="debug_uvs"></div>
+    <div class="header hidden">
         <!-- <div>
-            <h1> Bryce Evans </h1>
+            <h2> Bryce Evans </h2>
         </div> -->
         <div>
-            <h1> <span class="my-gradient-text-2">Bryce Evans</span></h1>
+            <h2> <span class="my-gradient-text-2">Bryce Evans</span></h2>
         </div>
         <!-- <div>
-            <h1> <span class="my-gradient-text">Bryce Evans</span></h1>
+            <h2> <span class="my-gradient-text">Bryce Evans</span></h2>
         </div>
         <div>
-            <h1> <span class="gradient-text">Bryce Evans</span></h1>
+            <h2> <span class="gradient-text">Bryce Evans</span></h2>
         </div> -->
     </div>
     <div class="main">
+        <div class="diagonal-box">
+            <div class="content"> ... </div>
+        </div>
 
         <div class="section">
             <!-- <div class="section-content">
-                <h1 style="font-weight: 900; font-size: 32pt; color:#EC3F12">Hello!</h1>
+                <h2 style="font-weight: 900; font-size: 32pt; color:#EC3F12">Hello!</h2>
                 <br> <span style="font-size: 22px;"></span>
             </div> -->
-            <div class="section-content">
-                <div id="cube-canvas" style="height: 20em; width: 100%">
-                    </div>
+            <div class="section-content" style="width: 100%; text-align: center;">
+                <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
+                    <div id="cube-canvas" style="height: 24em; width: 24em; margin: auto;">
+                </div></div>
+                
                 <script type="module">
                     import {PortalMesh} from '/webgl-portals/Portals.js';
                     import { Utils } from '/webgl-portals/examples/js/utils/Utils.js'; 
-                    import { PerspectiveCameraTest } from '/webgl-portals/examples/js/PerspectiveCameraTest.js';
+                    import { MainPortalCube } from './MainPortalCube.js';
                     $(document).ready(function () { 
                         Utils.loadShaders(function() {
-                            var page = new PerspectiveCameraTest(document.getElementById("cube-canvas"));
+                            var page = new MainPortalCube(document.getElementById("cube-canvas"));
                             page.render();
                         });
                     });
                 </script>
-                <h1>I work with <span style="font-size: 32pt; color:#EC3F12">Imagery</span> </h1>
-                <br> <span style="font-size: 22px;">Computer Vision | Computational Photography | Computational Photography</span>
+                <h1>
+                   Bryce Evans </h1>
+                <span class="subtitle" style="font-size: 22px;">Computer Vision | Computational Photography | Graphics </span>
             </div>
         </div>
     </div>
-    <div class="section">
+    <div class="section orange">
         <div class="section-content">
-            <h1>Past Work</h1>
-            <span>I work on Dection at Cruise in San Francisco.</span>
-        </div>
-
-    </div>
-    <div class="section dark" style="background-color: #1f0052;">
-        <div class="section-content">
-            <span style="color: white; font-weight: 200;"><h1>I love working with computer vision, graphics, and imagery</h1></span>
+            <span style="font-weight: 200;"><h2>I love working with imagery</h2></span>
             <div class="card">Expertise in Vision</div>
             <div class="card">Background in Graphics</div>
             <div class="card">Art as a Hobby</div>
         </div>
 
     </div>
+
     <div class="section">
-        <h1>Photography</h1>
+        <div class="section-content">
+            <h2>Past Work</h2>
+            <span>I work on Dection at Cruise in San Francisco.</span>
+        </div>
+
+    </div>
+
+    <div class="section blue">
+        <h2>Other Interests</h2>
     </div>
     <div class="section">
-        <h1>Other interests</h1>
+        <h2>Photography</h2>
     </div>
-    <div class="section">
-        <h1>Links and More</h1>
+
+    <div class="section dark">
+        <h2>Links and More</h2>
         <div><span>GitHub @bryce-evans</span> <span>Resume</span> <span>Contact</span></div>
     </div>
     </div>

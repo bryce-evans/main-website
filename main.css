@@ -1,8 +1,13 @@
 /* 
 light orange ff833b
 red orange   EC3F12
+light blue   21addb
+royal blue   0094c5
 blue         007095
  */
+
+
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 @font-face {
     font-family: helvetica-neue;
@@ -22,9 +27,22 @@ blue         007095
     font-weight: 700;
 }
 
+@font-face {
+    font-family: zona;
+    src: url('/fonts/zona/zona-extrabold.otf') format('opentype');
+    font-weight: 900;
+}
+
+@font-face {font-family: "Verlag"; src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot"); src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff") format("woff"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.svg#Verlag Black") format("svg");
+font-weight: 900; }
+
 html {
-    font-family: merriweather, serif;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: merriweather, serif; */
     color: #333;
+    background-image: url("white-clear.png");
+    background-size: 900px;
+    background-repeat: repeat;
 }
 
 body {
@@ -32,6 +50,7 @@ body {
 }
 
 .header {
+    font-family: zona;
     margin: 0;
     padding: 0;
     position: absolute;
@@ -45,8 +64,16 @@ body {
     padding: 1ex;
 }
 
+.gray {
+  color: #444;
+}
+
+.hidden {
+    display: none;
+}
+
 .main {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     width: 100%;
     position: relative;
 }
@@ -58,20 +85,28 @@ body {
     min-height: 15em;
 }
 
+.subtitle {
+    color: #666;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: helvetica-neue, Helvetica, Arial, Sans-Serif;
-    font-weight: 700;
+    font-family: zona, helvetica-neue, Helvetica, Arial, Sans-Serif;
+    font-weight: 900;
+    margin: 12px;
+    /* text-transform: uppercase; */
 }
 
 h1 {
-    font-size: 24pt;
-    font-weight: 900;
-    margin: 12px;
+    font-size: 42pt; 
+}
+
+h2 {
+    font-size: 32pt;
 }
 
 h1.gradient {
@@ -81,12 +116,59 @@ h1.gradient {
     -webkit-text-fill-color: transparent;
 }
 
+
+
+
+
+
+
 .section {
     min-height: 45ex;
     width: 100%;
+    position: relative;
 }
 
+.section:before {
+   position: absolute;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   background-image: linear-gradient(45deg, #654ea3, #eaafc8); 	
+   transform: skewY(-11deg);
+}
+
+.section-content {
+   max-width: 50em;
+   margin: 0 auto;
+   position: relative;
+}
+
+.blue.section {
+    background-color: #00abe4;
+    color: #eee;
+}
+
+
+.orange.section {
+    background-color: #f19500;
+    color: #eee;
+}
+
+
+.red.section {
+    background-color: #c94000;
+    color: #eee;
+}
+
+.pink.section {
+    background-color: #c5006c;
+    color: #eee;
+}
+
+
 .dark.section {
+    background-color: #1e1c20;
     color: #eee;
 }
 
@@ -106,6 +188,33 @@ h1.gradient {
 }
 
 
+/*  */
+
+#debug_uvs {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#debug_uvs>div {
+    border: 1px solid #444;
+    position: relative;
+    display: inline-block;
+}
+
+#debug_uvs>div>canvas {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+#debug_uvs>div>canvas.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
 /* 
 .section:nth-child(2) {
     width: 0;
