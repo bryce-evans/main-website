@@ -7,7 +7,7 @@ blue         007095
  */
 
 
- @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 @font-face {
     font-family: helvetica-neue;
@@ -33,17 +33,28 @@ blue         007095
     font-weight: 900;
 }
 
-@font-face {font-family: "Verlag"; src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot"); src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff") format("woff"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.svg#Verlag Black") format("svg");
-font-weight: 900; }
+@font-face {
+    font-family: "Verlag";
+    src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot");
+    src: url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.woff") format("woff"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/26ffd45d7739310d9dd0f8bf7c513625.svg#Verlag Black") format("svg");
+    font-weight: 900;
+}
 
 html {
     font-family: 'Open Sans', sans-serif;
     /* font-family: merriweather, serif; */
     color: #333;
-    background-image: url("white-clear.png");
-    background-size: 900px;
+    background-image: url("watercolor-paper-small.jpg");
+    background-size: 600px;
     background-repeat: repeat;
 }
+
+::selection {
+    background: #EC3F12;
+    color: white;
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: white;
+  }
 
 body {
     margin: 0;
@@ -65,7 +76,7 @@ body {
 }
 
 .gray {
-  color: #444;
+    color: #444;
 }
 
 .hidden {
@@ -78,15 +89,26 @@ body {
     position: relative;
 }
 
-.section {
-    /* text-align: center; */
-    margin: auto;
-    padding: 2em;
-    min-height: 15em;
-}
+
 
 .subtitle {
-    color: #666;
+    color: hsl(0, 0%, 35%);
+    ;
+}
+
+a {
+    font-weight: 800;
+    color: #0cc;
+    text-decoration: none;
+
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #066;
 }
 
 h1,
@@ -102,7 +124,10 @@ h6 {
 }
 
 h1 {
-    font-size: 42pt; 
+    font-size: 42pt;
+    background: -webkit-linear-gradient(#5a5a5a, #000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -111,37 +136,150 @@ h2 {
 
 h1.gradient {
     /* background: -webkit-linear-gradient( 45deg, #09009f, #00ff95 50%); */
-    background: -webkit-linear-gradient( 45deg, #007095, #EC3F12 18%);
+    background: -webkit-linear-gradient(45deg, #007095, #EC3F12 18%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        top: 1em;
+    }
 
+    100% {
+        opacity: 1;
+        top: 0em;
+    }
+}
 
+@keyframes fadeInDelay {
+    0% {
+        opacity: 0;
+        top: 1em;
+    }
 
+    40% {
+        opacity: 0;
+        top: 1em;
+    }
 
+    100% {
+        opacity: 1;
+        top: 0em;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        top: 1em;
+    }
+
+    66% {
+        opacity: 0;
+        top: 1em;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0em;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+        margin-top: 1em;
+        margin-bottom: -1em;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.opacity0 {
+    opacity: 0;
+}
+.fadein {
+    animation: fadeIn ease 2s;
+}
+.fadeinDelay {
+    animation: fadeInDelay ease 2s;
+    /* -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 0.3s; */
+
+    /* -webkit-transform: translate(0, -60px);
+    transform: translate(0, -60px);
+    
+    -webkit-transition: -webkit-transform .3s linear;
+    transition: transform .3s linear, opacity .2s ease-in-out, -webkit-transform .3s linear;
+    transition-delay: 0.3s; */
+}
 
 
 .section {
-    min-height: 45ex;
+    /* text-align: center; */
+    margin: 0.5em auto -3em auto;
+    padding: 2em 0;
+    min-height: 62ex;
     width: 100%;
     position: relative;
 }
 
 .section:before {
-   position: absolute;
-   top: 0;
-   right: 0;
-   left: 0;
-   bottom: 0;
-   background-image: linear-gradient(45deg, #654ea3, #eaafc8); 	
-   transform: skewY(-8deg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+    transform: skewY(-8deg);
+}
+
+.section.footer{
+    min-height: 20ex;
 }
 
 .section-content {
-   max-width: 50em;
-   margin: 0 auto;
-   position: relative;
+    max-width: 50em;
+    margin: 0 auto;
+    position: relative;
 }
 
 .blue.section {
@@ -187,14 +325,39 @@ h1.gradient {
     ;
 }
 
+.two-col {
+    display: flex;
+}
+
+.col {
+    flex: 50%;
+}
+
+.col-small {
+    flex: 32%;
+}
+
+.col-big {
+    flex: 65%;
+}
+
+.cropped-img {
+    width: 218px;
+    height: 320px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+    background-size: cover;
+}
+
 :root {
     --width: 100vw;
     --full-width: 100vw;
-    
+
     @media (min-width: 42em) {
-      --width: 42rem;
+        --width: 42rem;
     }
-    
+
     --angle: -11deg;
     /*-----------------
     Magic Number Alert:
@@ -206,19 +369,19 @@ h1.gradient {
     --magic-number: 0.07027;
     --skew-padding: calc(var(--width) * var(--magic-number));
     --clip-padding: calc(var(--full-width) * var(--magic-number));
-  }
-  
+}
+
 
 .content {
     max-width: var(--width);
     margin: 0 auto;
     padding: 1.5em;
     position: relative;
-    
-  }
+
+}
 
 
-  /* .zigzag {
+/* .zigzag {
 	background-image: repeating-linear-gradient(46deg, rgb(242, 13, 13) 13px, rgb(242, 13, 13) calc(26px), rgb(207, 252, 230) calc(26px), rgb(207, 252, 230) calc(39px), rgb(10, 26, 41) calc(39px), rgb(10, 26, 41) calc(52px)), none;
 	background-size: 28px 100%, 28px 100%;
 }
@@ -231,96 +394,100 @@ h1.gradient {
 	-webkit-mask-image: repeating-linear-gradient(to right, rgb(0, 0, 0) 28px, rgb(0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(84px));
 	mask-image: repeating-linear-gradient(to right, rgb(0, 0, 0) 28px, rgb(0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(84px));
 } */
-  .striped-blue {
+.striped-blue {
     color: #fcfcfc;
-  background-image: 
-  linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
-  linear-gradient(-135deg, rgb(0, 182, 238), rgb(0, 100, 139));
-background-size: .5em .5em, 100% 100%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, rgb(0, 182, 238), rgb(0, 100, 139));
+    background-size: .5em .5em, 100% 100%;
 }
 
-  .striped-green {
-      color: #fcfcfc;
-    background-image: 
-    linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
-    linear-gradient(-135deg, #0cc, #066);
-  background-size: .5em .5em, 100% 100%;
-  }
-  .striped-orange {
+.striped-green {
     color: #fcfcfc;
-  background-image: 
-  linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
-  linear-gradient(-135deg, #ff9d00, #dd5800);
-background-size: .5em .5em, 100% 100%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, #0cc, #066);
+    background-size: .5em .5em, 100% 100%;
+}
+
+.striped-lime {
+    color: #fcfcfc;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, #35ff50, #00b41e);
+    background-size: .5em .5em, 100% 100%;
+}
+
+.striped-orange {
+    color: #fcfcfc;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, #ff9d00, #dd5800);
+    background-size: .5em .5em, 100% 100%;
 }
 
 .striped-red {
     color: #fcfcfc;
-  background-image: 
-  linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
-  linear-gradient(-135deg, #ff4800, #b40000);
-background-size: .5em .5em, 100% 100%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, #ff4800, #b40000);
+    background-size: .5em .5em, 100% 100%;
 }
 
 .striped-black {
     color: #fcfcfc;
-  background-image: 
-  linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
-  linear-gradient(-135deg, #242424, #131313);
-background-size: .5em .5em, 100% 100%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(-135deg, #333333, #242424);
+    background-size: .5em .5em, 100% 100%;
 }
 
 .diagonal {
     position: relative;
     /* margin-top: calc( ( var(--clip-padding) * -1 ) - 2px ); */
 
-    padding: calc( ( var(--clip-padding) * 2 ) - ( var(--clip-padding) - var(--skew-padding) ) ) 0 4em;
-    clip-path: polygon(
-      0% calc(var(--clip-padding) * 2), 
-      100% 0%, 
-      100% 100%, 
-      0% 100% );
-    -webkit-clip-path: polygon(
-      0% calc(var(--clip-padding) * 2), 
-      100% 0%, 
-      100% 80%, 
-      0% 100% );
-  }
+    padding: calc((var(--clip-padding) * 2) - (var(--clip-padding) - var(--skew-padding))) 0 4em;
+    clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 100%,
+            0% 100%);
+    -webkit-clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 75%,
+            0% 100%);
+}
 
-  .diagonal-top-only {
+.diagonal-top-only {
     position: relative;
     /* margin-top: calc( ( var(--clip-padding) * -1 ) - 2px ); */
 
-    padding: calc( ( var(--clip-padding) * 2 ) - ( var(--clip-padding) - var(--skew-padding) ) ) 0 4em;
-    clip-path: polygon(
-      0% calc(var(--clip-padding) * 2), 
-      100% 0%, 
-      100% 100%, 
-      0% 100% );
-    -webkit-clip-path: polygon(
-      0% calc(var(--clip-padding) * 2), 
-      100% 0%, 
-      100% 100%, 
-      0% 100% );
-  }
+    padding: calc((var(--clip-padding) * 2) - (var(--clip-padding) - var(--skew-padding))) 0 4em;
+    clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 100%,
+            0% 100%);
+    -webkit-clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 100%,
+            0% 100%);
+}
 
-  .diagonal-bottom-only {
+.diagonal-bottom-only:before {
+    content: '';
     position: relative;
     /* margin-top: calc( ( var(--clip-padding) * -1 ) - 2px ); */
 
-    padding: calc( ( var(--clip-padding) * 2 ) - ( var(--clip-padding) - var(--skew-padding) ) ) 0 4em;
-    clip-path: polygon(
-      0% calc(var(--clip-padding) * 2), 
-      100% 0%, 
-      100% 100%, 
-      0% 100% );
-      -webkit-clip-path: polygon(
-        0% calc(var(--clip-padding) * 2), 
-        100% 0%, 
-        100% 80%, 
-        0% 100% );
-  }
-  
+    padding: calc((var(--clip-padding) * 2) - (var(--clip-padding) - var(--skew-padding))) 0 4em;
+    clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 100%,
+            0% 100%);
+    -webkit-clip-path: polygon(0% calc(var(--clip-padding) * 2),
+            100% 0%,
+            100% 80%,
+            0% 100%);
+}
+
 
 /*  */
 
@@ -349,6 +516,7 @@ background-size: .5em .5em, 100% 100%;
     top: 0;
     z-index: 2;
 }
+
 /* 
 .section:nth-child(2) {
     width: 0;
@@ -365,7 +533,7 @@ background-size: .5em .5em, 100% 100%;
     /* Fallback: Set a background color. */
     background-color: #CA4246;
     /* Create the gradient. */
-    background-image: linear-gradient( 45deg, #21addb 25%, #007095 25%, #007095 50%, #8E5346 50%, #8E5346 75%, #EC3F12 75%);
+    background-image: linear-gradient(45deg, #21addb 25%, #007095 25%, #007095 50%, #8E5346 50%, #8E5346 75%, #EC3F12 75%);
     /* Set the background size and repeat properties. */
     background-size: 100%;
     background-repeat: repeat;
@@ -383,7 +551,7 @@ background-size: .5em .5em, 100% 100%;
     background-color: #ee681b;
     /* Create the gradient. */
     /* background-image: linear-gradient( 45deg, #21addb 25%, #007095 25%, #007095 50%, #141414 50%, #141414 75%, #2800db 75%); */
-    background-image: linear-gradient( 45deg, #21addb 20%, #007095 20%, #007095 40%, #003041 40%, #003041 60%, #141414 60%, #141414 80%, #2800db 80%);
+    background-image: linear-gradient(45deg, #21addb 20%, #007095 20%, #007095 40%, #003041 40%, #003041 60%, #141414 60%, #141414 80%, #2800db 80%);
     /* background-image: linear-gradient( 45deg, #21addb 20%, #007095 20%, #007095 40%, #141414 40%, #141414 60%, #91260b 60%, #91260b 80%, #EC3F12 80%); */
     /* Set the background size and repeat properties. */
     background-size: 100%;
@@ -401,7 +569,7 @@ background-size: .5em .5em, 100% 100%;
     /* Fallback: Set a background color. */
     background-color: #CA4246;
     /* Create the gradient. */
-    background-image: linear-gradient( 45deg, #CA4246 16.666%, #E16541 16.666%, #E16541 33.333%, #F18F43 33.333%, #F18F43 50%, #8B9862 50%, #8B9862 66.666%, #476098 66.666%, #476098 83.333%, #A7489B 83.333%);
+    background-image: linear-gradient(45deg, #CA4246 16.666%, #E16541 16.666%, #E16541 33.333%, #F18F43 33.333%, #F18F43 50%, #8B9862 50%, #8B9862 66.666%, #476098 66.666%, #476098 83.333%, #A7489B 83.333%);
     /* Set the background size and repeat properties. */
     background-size: 100%;
     background-repeat: repeat;
@@ -428,9 +596,11 @@ background-size: .5em .5em, 100% 100%;
     0% {
         background-size: 650%;
     }
+
     40% {
         background-size: 650%;
     }
+
     100% {
         background-size: 100%;
     }
@@ -446,9 +616,11 @@ background-size: .5em .5em, 100% 100%;
     0% {
         background-size: 100%;
     }
+
     80% {
         background-size: 650%;
     }
+
     100% {
         background-size: 650%;
     }
