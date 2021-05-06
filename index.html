@@ -3,8 +3,10 @@
 <head>
     <script type="text/javascript" src="/webgl-portals/modules/jquery/build/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="/webgl-portals/modules/three.js/build/three.js"></script>
-    <script data-src="/webgl-portals/examples/shaders/portal_water.vertex" type="x-shader/x-vertex" id="vertexShader"></script>
-    <script data-src="/webgl-portals/examples/shaders/portal_water.frag" type="x-shader/x-fragment" id="fragmentShader"></script>
+    <script data-src="/webgl-portals/examples/shaders/portal_water.vertex" type="x-shader/x-vertex" id="vertexShader">
+    </script>
+    <script data-src="/webgl-portals/examples/shaders/portal_water.frag" type="x-shader/x-fragment" id="fragmentShader">
+    </script>
     <link rel="stylesheet" href="main.css">
     </link>
 </head>
@@ -25,36 +27,43 @@
             <h2> <span class="gradient-text">Bryce Evans</span></h2>
         </div> -->
     </div>
-        <div class="section">
-            <!-- <div class="section-content">
+    <div class="section" style="margin-top: -0.5em;">
+        <!-- <div class="section-content">
                 <h2 style="font-weight: 900; font-size: 32pt; color:#EC3F12">Hello!</h2>
                 <br> <span style="font-size: 22px;"></span>
             </div> -->
-            <div class="section-content" style="width: 100%; text-align: center;">
-                <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
-                    <div id="cube-canvas" style="height: 24em; width: 24em; margin: auto;">
-                </div></div>
-                
-                <script type="module">
-                    import {PortalMesh} from '/webgl-portals/Portals.js';
+        <div class="section-content" style="width: 100%; text-align: center;">
+            <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
+                <div id="cube-canvas" class="fadein opacity0" style="height: 28em; width: 28em; margin: -2em auto;">
+                </div>
+            </div>
+
+            <script type="module">
+                import {PortalMesh} from '/webgl-portals/Portals.js';
                     import { Utils } from '/webgl-portals/examples/js/utils/Utils.js'; 
-                    import { MainPortalCube } from './MainPortalCube.js';
+                    import { MainPortalCube } from './js/MainPortalCube.js';
                     $(document).ready(function () { 
                         Utils.loadShaders(function() {
-                            var page = new MainPortalCube(document.getElementById("cube-canvas"));
-                            page.render();
+                            var cube_scene = new MainPortalCube(document.getElementById("cube-canvas"));
+                            cube_scene.render();
+                            window.cube_scene = cube_scene;
+                            document.getElementById("cube-canvas").classList.remove("opacity0");
                         });
                     });
                 </script>
-                <h1>
-                   Bryce Evans </h1>
-                <span class="subtitle" style="font-size: 22px;">Computer Vision | Computational Photography | Graphics </span>
+            <div class="fadeinDelay">
+                <h1> Bryce Evans </h1>
+                <span class="subtitle" style="font-size: 22px;">Computer Vision | Computational Photography | Graphics
+                </span>
             </div>
         </div>
     </div>
+    </div>
     <div class="section diagonal striped-green">
-        <div class="section-content content">
-            <span style="font-weight: 200;"><h2>I love working with imagery</h2></span>
+        <div class="section-content">
+            <span style="font-weight: 200;">
+                <h2>I love working with imagery</h2>
+            </span>
             <div class="card">Expertise in Vision</div>
             <div class="card">Background in Graphics</div>
             <div class="card">Art as a Hobby</div>
@@ -70,31 +79,45 @@
 
     </div>
 
-    <div class="section striped-red diagonal-bottom-only">
-        <div class="section-content"><h2>Other Interests</h2></div>
-        
+    <div class="section striped-lime diagonal">
+        <div class="section-content">
+            <h2>Other Interests</h2>
+        </div>
+
     </div>
-    <div class="section diagonal-bottom-only">
-        <div class="section-content"><h2>Photography</h2></div>
-        
+    <div class="section">
+        <div class="section-content">
+            <div>
+                <h2>Photography</h2>
+            </div>
+
+            <div class='two-col'>
+                <div class="col-big">Portrait photography
+
+                    See my full portfolio at <a href="http://bryce.photo" target="_blank">bryce.photo</a>.
+                </div>
+                <div class="col-small" style="margin-right: 2em;
+                ">
+                    <div style="border: 1px solid rgb(161, 161, 161);
+                padding: 2ex; ">
+                        <div class="cropped-img"
+                            style="background-image: url(https://farm66.staticflickr.com/65535/50109616953_26d2af7bd0_c.jpg);"
+                            alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="section striped-black diagonal-top-only">
-        <div class="section-content"><h2>Links and More</h2>
-            <div><span>GitHub @bryce-evans</span> <span>Resume</span> <span>Contact</span></div></div>
-        
-    </div>
-    </div>
+    <div class="section footer striped-black diagonal-top-only">
+        <div class="section-content">
+            <h2>Links and More</h2>
+            <div><span>GitHub @bryce-evans</span> <span>Resume</span> <span>Contact</span></div>
+        </div>
 
-    <script>
-        // var sections = document.getElementsByClassName('section');
-        // for (var i = 0; i < sections.length; i++) {
-        //     var s = sections[i];
-        //     var value = 255 - 50 * i;
-        //     var color = `rgb(${value},${value},${value})`;
-        //     s.style.backgroundColor = color;
-        // }
-    </script>
+    </div>
+    </div>
 
 </body>
 
