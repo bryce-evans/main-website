@@ -1,49 +1,49 @@
-import { OrbitControls } from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
-import { CubePortalLayout } from '../webgl-portals/src/layouts/CubePortalLayout.js';
-import { RandomGeometryScene } from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
-import { EncoderDecoderScene } from './scenes/EncoderDecoderScene.js';
-import { BoxGeometryScene } from './scenes/BoxGeometryScene.js';
+import {OrbitControls} from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
+import {CubePortalLayout} from '../webgl-portals/src/layouts/CubePortalLayout.js';
+import {RandomGeometryScene} from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
+import {EncoderDecoderScene} from './scenes/EncoderDecoderScene.js';
+import {BoxGeometryScene} from './scenes/BoxGeometryScene.js';
 
 
 class MainPortalCube {
-    constructor(target) {
-        target = target || document.body;
-        var width = target.offsetWidth;
-        var height = target.offsetHeight;
+  constructor(target) {
+    target = target || document.body;
+    const width = target.offsetWidth;
+    const height = target.offsetHeight;
 
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true  });
-        this.renderer.setClearColor(0xffffff, 0);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(width, height);
-        
-        target.appendChild(this.renderer.domElement);
+    this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    this.renderer.setClearColor(0xffffff, 0);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize(width, height);
 
-        var scene = new THREE.Scene();
-        scene.background = null;
-        scene.add(new THREE.AmbientLight(0xffffff));
-        this.scene = scene;
+    target.appendChild(this.renderer.domElement);
 
-        //var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
-        var cam_size = 50;
-        var camera = new THREE.OrthographicCamera(width / -cam_size, width / cam_size, height / cam_size, height / -cam_size, 1, 1000);
+    const scene = new THREE.Scene();
+    scene.background = null;
+    scene.add(new THREE.AmbientLight(0xffffff));
+    this.scene = scene;
 
-        // camera.position.set(11, 2.5, 11);
-        camera.position.set(12.2, 5.3, 8.6);
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
-        this.camera = camera;
+    // var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    const cam_size = 50;
+    const camera = new THREE.OrthographicCamera(width / -cam_size, width / cam_size, height / cam_size, height / -cam_size, 1, 1000);
 
-        this.controls = new OrbitControls(camera, this.renderer.domElement);
-        this.controls.enableDamping = true;
-        this.controls.dampingFactor = 0.03;
-        this.controls.enableZoom = false;
-        this.controls.enablePan = false;
+    // camera.position.set(11, 2.5, 11);
+    camera.position.set(12.2, 5.3, 8.6);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    this.camera = camera;
 
-        var cube_scenes = [];
-        
-        /*
+    this.controls = new OrbitControls(camera, this.renderer.domElement);
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.03;
+    this.controls.enableZoom = false;
+    this.controls.enablePan = false;
+
+    const cube_scenes = [];
+
+    /*
         POSITIONS OF SCENES ON THE CUBE FROM INITIAL VIEW
                        .
-                   .       .   
+                   .       .
                .               .
         (1) .         2            . (5)
            .   .               .   .
@@ -55,78 +55,78 @@ class MainPortalCube {
                    .   .   .
                        .
                       (3)
-    
+
          */
-        
-        // Green room on right
-        cube_scenes.push(new BoxGeometryScene({ "size": 5, "room_hue" : 137, "geo_hue": 80}));
-        cube_scenes.push(new RandomGeometryScene({ "size": 5 }));
 
-        // Red room on top
-        cube_scenes.push(new BoxGeometryScene({ "size": 5, "room_hue" : 350, "geo_hue": 53}));
-        cube_scenes.push(new RandomGeometryScene({ "size": 5 }));
+    // Green room on right
+    cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 137, 'geo_hue': 80}));
+    cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
-        // Blue room on left
-        cube_scenes.push(new BoxGeometryScene({ "size": 5, "room_hue" : 219, "geo_hue": 330 }));
-        cube_scenes.push(new RandomGeometryScene({ "size": 5 }));
+    // Red room on top
+    cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 350, 'geo_hue': 53}));
+    cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
-        const portal_render_resolution = 1024 * window.devicePixelRatio;
-        var portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, { size: 10, resolution_height: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256 });
-        scene.add(portal_cube);
-        // scene.add(portal_cube.wireGeometry());
-        this.portal = portal_cube;
+    // Blue room on left
+    cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 219, 'geo_hue': 330}));
+    cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
-        // var portal = new RandomGeometryScene({ "size": 5 });
-        // scene.add(portal);
-        // this.portal = portal;
+    const portal_render_resolution = 1024 * window.devicePixelRatio;
+    const portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, {size: 10, resolution_height: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256});
+    scene.add(portal_cube);
+    // scene.add(portal_cube.wireGeometry());
+    this.portal = portal_cube;
 
-        var debug_window = $("#debug_uvs");
-        var show_uv_debug = false;
-        if (show_uv_debug) {
-            this.portal.renderDebugUVs(true, debug_window);
-        }
-        $(document).keydown(function(event) {
-            if (event.which == 32) {
-                // space bar: Show debug pane.
-                $('#debug_uvs').show();
-                this.show_debug_uvs = true;
-            } 
-        }.bind(this));
+    // var portal = new RandomGeometryScene({ "size": 5 });
+    // scene.add(portal);
+    // this.portal = portal;
+
+    const debug_window = $('#debug_uvs');
+    const show_uv_debug = false;
+    if (show_uv_debug) {
+      this.portal.renderDebugUVs(true, debug_window);
     }
-    render() {
-        var camera = this.camera;
-        var renderer = this.renderer;
-        var controls = this.controls;
-        var scene = this.scene;
-        var portal = this.portal;
+    $(document).keydown(function(event) {
+      if (event.which == 32) {
+        // space bar: Show debug pane.
+        $('#debug_uvs').show();
+        this.show_debug_uvs = true;
+      }
+    }.bind(this));
+  }
+  render() {
+    const camera = this.camera;
+    const renderer = this.renderer;
+    const controls = this.controls;
+    const scene = this.scene;
+    const portal = this.portal;
 
-        var distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
-        var rotation = Math.atan(camera.position.x / camera.position.z);
+    const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
+    const rotation = Math.atan(camera.position.x / camera.position.z);
 
-        function render_loop() {
-            controls.update();
-            requestAnimationFrame(render_loop)
+    function render_loop() {
+      controls.update();
+      requestAnimationFrame(render_loop);
 
-            // TODO: this is broken due to bad linking.
-            // portal.rotation.y += 0.005;
+      // TODO: this is broken due to bad linking.
+      // portal.rotation.y += 0.005;
 
-            portal.onBeforeRender();
+      portal.onBeforeRender();
 
 
-            // var delta = 0.000;
-            // rotation += delta;
+      // var delta = 0.000;
+      // rotation += delta;
 
-            // var new_x = Math.sin(rotation) * distance;
-            // var new_z = Math.cos(rotation) * distance;
+      // var new_x = Math.sin(rotation) * distance;
+      // var new_z = Math.cos(rotation) * distance;
 
-            // camera.position.x = new_x;
-            // camera.position.z = new_z;
-            // camera.lookAt(new THREE.Vector3(0, 0, 0));
-            
-            renderer.render(scene, camera);
-        }
-        render_loop();
+      // camera.position.x = new_x;
+      // camera.position.z = new_z;
+      // camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+      renderer.render(scene, camera);
     }
+    render_loop();
+  }
 }
 
-export { MainPortalCube }
+export {MainPortalCube};

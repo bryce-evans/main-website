@@ -1,0 +1,346 @@
+:root {
+  --width: 100vw;
+  --full-width: 100vw;
+  
+  @media (min-width: 42em) {
+    --width: 42rem;
+  }
+  
+  --angle: -11deg;
+  /*-----------------
+  Magic Number Alert:
+  
+  the 0.09719 is calculated by this formula:
+  tan(11°) / 2
+  11° is the current skewY value.
+  ------------------*/
+  --magic-number: 0.09719;
+  --skew-padding: calc(var(--width) * var(--magic-number));
+  --clip-padding: calc(var(--full-width) * var(--magic-number));
+}
+
+.diagonal-box {
+  position: relative;
+  padding: var(--skew-padding) 0;
+  margin-top: -1px;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: skewy(var(--angle));
+    transform-origin: 50% 0;
+    outline: 1px solid transparent;
+    backface-visibility: hidden;
+  }
+}
+
+.bg-one:before {
+  background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+}
+
+.bg-two:before {
+  background-image: linear-gradient(-135deg, #ff0084, #33001b);
+}
+
+.bg-three:before {
+  background-image: linear-gradient(-135deg, #007, #003);
+}
+
+.content {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 1.5em;
+  position: relative;
+  
+  /* -----------
+  enable the border to see, that the content
+  perfectly fits into the section withou
+  bleeding into the adjecting areas:
+  ------------ */
+  // border: 2px dashed #fff8;
+}
+
+/* --------------------
+Clip Path Update
+-------------------- */
+
+.clip-path {
+  position: relative;
+  margin-top: calc( ( var(--clip-padding) * -1 ) - 2px );
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.05) 50%, 0, transparent 100%), 
+    linear-gradient(-135deg, #0cc, #066);
+  background-size: .5em .5em, 100% 100%;
+  padding: calc( ( var(--clip-padding) * 2 ) - ( var(--clip-padding) - var(--skew-padding) ) ) 0 4em;
+  clip-path: polygon(
+    0% calc(var(--clip-padding) * 2), 
+    100% 0%, 
+    100% 100%, 
+    0% 100% );
+  -webkit-clip-path: polygon(
+    0% calc(var(--clip-padding) * 2), 
+    100% 0%, 
+    100% 100%, 
+    0% 100% );
+}
+
+/* --------------------
+Presentational Styles 
+-------------------- */
+
+*, *:before, *:after {
+  box-sizing: border-box; 
+}
+
+html {
+  font-size: 100%;
+  transition: font-size 0.2s linear;
+  
+  @media (min-width: 70em) {
+    font-size: 125%;
+  }
+}
+
+body {
+  background: #003;
+  padding-top: 8em;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin:0 auto 1em;
+  padding: 0 1em;
+  max-width: 42rem;
+  line-height: 1.2;
+  transform: skewY(var(--angle));
+  font-size: 3em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin: 0 0 0.5em;
+  font-weight: 900;
+}
+
+.intro {
+  font-size: 1.25em;
+  transform: skewY(var(--angle));
+  margin: 0em auto 0em;
+  text-align: center;
+  background: #fff;
+  color: #003;
+  font-weight: 900;
+  padding: 0.5em;
+  text-transform: uppercase;
+  
+  a {
+    background-image: linear-gradient(transparent 90%, 0, #003 100%);
+    background-image: none;
+    border-bottom: 4px solid;
+    transition: none;
+    
+    &:hover {
+      border-color: #a06;
+      opacity: 1;
+    }
+  }
+}
+
+p {
+  font-size: 1.25em;
+  margin: 0;
+  line-height: 1.5;
+  
+  & + &,
+  svg + & {
+    margin-top: 1em;
+  }
+  
+  code {
+    background: #0033;
+    padding: 0.125em 0.375em;
+    border-radius: 0.125em;
+    
+    @media (min-width: 35em) {
+      white-space: nowrap;
+    }
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(transparent 90%, 0, #fffa 100%);
+    padding: 0.125em 0;
+    //display: inline-block;
+    transition: opacity 0.3s ease-out;
+    
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+  }
+}
+
+.columns {
+  display: flex;
+  margin: 2em -1em;
+}
+
+.figure {
+  display: block;
+  width: 100%;
+  margin: 0 1em;
+  
+  svg {
+    display: block;
+    width: 100%;
+  }
+  
+  .object {
+    transform-origin: 140px 140px;    
+    &--rotate {
+      animation: rotate 3s ease-in-out alternate infinite;
+    }
+    
+    &--skew {
+      animation: skew 3s ease-in-out alternate infinite;
+    }
+    
+    &--skew-pause {
+      animation: skew-pause 6s ease-in-out infinite;
+    }
+    &--skew-pause-alt {
+      animation: skew-pause-alt 6s ease-in-out infinite;
+    }
+  }
+  
+  figcaption {
+    margin-top: 0.5em;
+    line-height: 1.5;
+    font-weight: 700;
+    opacity: 0.9;
+  }
+}
+
+@keyframes rotate {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(-11deg);}
+  100% {transform: rotate(-11deg) scaleX(1.2);}
+}
+
+@keyframes skew {
+  to {transform: skewY(-11deg);}
+}
+
+@keyframes skew-pause {
+  0%, 70%, 100% {transform: skewY(0deg);}
+  20%, 50% {transform: skewY(-11deg);}
+}
+
+@keyframes skew-pause-alt {
+  0%, 40%, 100% {transform: skewY(0deg);}
+  20%, 30% {transform: skewY(-11deg);}
+}
+
+.formula {
+  font-family: monospace;
+  font-size: 1.5em;
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+  
+  @media (min-width: 26em) {
+    font-size: 2em;
+  }
+}
+
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3%;
+  margin: 2em 0;
+  
+  --translation: 0;
+  
+  .box {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    border: 1px solid #fff;
+    background: #fff3;
+    transform: translateY( var(--translation) );
+    animation: translate 3s ease-in-out infinite;
+    
+    &:nth-child(1) { --translation: calc(var(--skew-padding) * 1.5)}
+    &:nth-child(2) { --translation: calc(var(--skew-padding) * 1)}
+    &:nth-child(3) { --translation: calc(var(--skew-padding) * 0.5)}
+    &:nth-child(4) { --translation: calc(var(--skew-padding) * 0)}    
+  }
+}
+
+@keyframes translate {
+  0%, 20%, 100% { transform: translateY(0); }
+  50%, 70% { transform: translateY(var(--translation)); }
+}
+
+
+/* ---------------------------------
+   Interactive Controls
+--------------------------------- */
+
+.controls {
+  background: #FFF3;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0 0 0.5em 0.5em;
+  max-width: 90%;
+  
+  &__headline {
+    color: #fff;
+    margin: 0.75em 1.125em 0.625em;
+    font-size: 1em;
+    text-align: center;
+    font-weight: 400;
+  }
+}
+
+.angle-control {
+  padding: 0.75em 0.625em 0.625em;
+  margin: 0 0.5em;
+  font-size: 1em;
+  border-top: 1px solid #fff3;
+  display: flex;
+  
+  > * {
+    vertical-align: middle;
+    margin: 0 0.5em;
+  }
+  span {
+    display: inline-block;
+    min-width: 6ch;    
+  }
+  
+  input {
+    width: 8em;
+    flex-shrink: 1;
+  }
+}
+
+.result {
+  text-align: right;
+}
+
+[hidden] {
+  display: none;
+}
