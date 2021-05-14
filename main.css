@@ -97,8 +97,8 @@ body {
 }
 
 a {
-    font-weight: 800;
-    color: #0cc;
+    font-weight: 700;
+    color: #EC3F12;
     text-decoration: none;
 
 }
@@ -108,7 +108,7 @@ a:hover {
 }
 
 a:visited {
-    color: #066;
+    color: #c5340f;
 }
 
 h1,
@@ -394,52 +394,48 @@ h1.gradient {
 	-webkit-mask-image: repeating-linear-gradient(to right, rgb(0, 0, 0) 28px, rgb(0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(84px));
 	mask-image: repeating-linear-gradient(to right, rgb(0, 0, 0) 28px, rgb(0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(56px), rgba(0, 0, 0, 0) calc(84px));
 } */
-.striped-blue {
+
+.striped {
     color: #fcfcfc;
+    background-size: .5em .5em, 100% 100%;
+}
+.striped h2 {
+    text-shadow: -1px -1px 1px rgb(0 0 0 / 35%);
+}
+.striped.blue {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, rgb(0, 182, 238), rgb(0, 100, 139));
-    background-size: .5em .5em, 100% 100%;
 }
 
-.striped-green {
-    color: #fcfcfc;
+.striped.green {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
-        linear-gradient(-135deg, #0cc, #066);
-    background-size: .5em .5em, 100% 100%;
+        linear-gradient(-135deg, #0cc, rgb(0, 94, 131));
 }
 
-.striped-lime {
-    color: #fcfcfc;
+.striped.lime {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
-        linear-gradient(-135deg, #35ff50, #00b41e);
-    background-size: .5em .5em, 100% 100%;
+        linear-gradient(-135deg, #b8f317, #00c97c);
 }
 
-.striped-orange {
-    color: #fcfcfc;
+.striped.orange {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #ff9d00, #dd5800);
-    background-size: .5em .5em, 100% 100%;
 }
 
-.striped-red {
-    color: #fcfcfc;
+.striped.red {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #ff4800, #b40000);
-    background-size: .5em .5em, 100% 100%;
 }
 
-.striped-black {
-    color: #fcfcfc;
+.striped.black {
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
+        linear-gradient(rgba(0, 0, 0, 0.1) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #333333, #242424);
-    background-size: .5em .5em, 100% 100%;
 }
 
 .diagonal {

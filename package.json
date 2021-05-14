@@ -1,0 +1,24 @@
+{
+  "name": "bryce-website",
+  "version": "1.0.0",
+  "description": "Main website for bryce.me",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryce-evans/main-website.git"
+  },
+  "author": "Bryce Evans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryce-evans/main-website/issues"
+  },
+  "homepage": "https://github.com/bryce-evans/main-website#readme"
+}
