@@ -111,6 +111,25 @@ class MainPortalCube {
     const scene = this.scene;
     const portal = this.portal;
 
+    // Rotate in new scenes as the cube moves around.
+    this.seen = this.portal.children.map(face => face.isVisible(this.camera));
+
+    this.swapScenes = function() {
+      let visible = this.portal.children.map(face => face.isVisible(this.camera));
+      for (var i = 0; i < 6; i++) {
+        if (!visible[i] && this.seen[i]) {
+          let old_scene = this.portal.scenes[i];
+          let new_scene = new RandomGeometryScene({'size': 5});
+          this.portal.scenes[i] = new_scene;
+          this.portal.children[i].material.scene = new_scene;
+          //delete old;
+        }
+      }
+      this.seen = visible;
+    }
+
+    setInterval(this.swapScenes.bind(this), 2000);
+
     // Used to rotate the cube automatically.
     const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
     let rotation = Math.atan(camera.position.x / camera.position.z);
@@ -119,7 +138,7 @@ class MainPortalCube {
     let last_frame = false;
     var start_time = 0.0;
 
-    let turn_time =1300;
+    let turn_time = 1300;
     let turn_angle = 0.7;
 
     function render_loop(time_ms) {
