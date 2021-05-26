@@ -176,8 +176,10 @@ class MainPortalCube {
         
 
         // Runs from 1-0, decellerating
-        let arc_progress = 1-Math.sqrt(time_ms/turn_time);
-        let end_angle = arc_progress * turn_angle + 0.62;
+        let progress = 1 - time_ms/turn_time;
+        // cubic looks better  ¯\_(ツ)_/¯
+        let deccel = progress*progress*progress;
+        let end_angle = deccel * turn_angle + 0.62;
         camera.position.x = Math.cos(end_angle) * distance;
         camera.position.z = Math.sin(end_angle) * distance;
         
