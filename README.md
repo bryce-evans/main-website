@@ -1,6 +1,10 @@
 # main-website
 Main website for bryce.me
 
+checkout submodules
+git submodule update --init --recursive
+
+
 Things to include
 bryce.me
 bryce.photo

@@ -28,7 +28,11 @@ class MainPortalCube {
     const camera = new THREE.OrthographicCamera(width / -cam_size, width / cam_size, height / cam_size, height / -cam_size, 1, 1000);
 
     // camera.position.set(11, 2.5, 11);
-    camera.position.set(12.2, 5.3, 8.6);
+
+    // Best position
+    // camera.position.set(12.2, 5.3, 8.6);
+    // Compensate for initial turn
+    camera.position.set(8.6, 5.3, 12.2);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
     this.camera = camera;
 
@@ -37,6 +41,7 @@ class MainPortalCube {
     this.controls.dampingFactor = 0.03;
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
+    window.controls = this.controls;
 
     const cube_scenes = [];
 
@@ -60,14 +65,20 @@ class MainPortalCube {
 
     // Green room on right
     cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 137, 'geo_hue': 80}));
+    
+    // opposite side
     cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
     // Red room on top
     cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 350, 'geo_hue': 53}));
+    
+    // opposite side
     cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
     // Blue room on left
     cube_scenes.push(new BoxGeometryScene({'size': 5, 'room_hue': 219, 'geo_hue': 330}));
+
+    // opposite side
     cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
     const portal_render_resolution = 1024 * window.devicePixelRatio;
@@ -100,11 +111,29 @@ class MainPortalCube {
     const scene = this.scene;
     const portal = this.portal;
 
+    // Used to rotate the cube automatically.
     const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
-    const rotation = Math.atan(camera.position.x / camera.position.z);
+    let rotation = Math.atan(camera.position.x / camera.position.z);
 
-    function render_loop() {
+    let first_frame = true;
+    let last_frame = false;
+    var start_time = 0.0;
+
+    let turn_time =1300;
+    let turn_angle = 0.7;
+
+    function render_loop(time_ms) {
+
+      if (first_frame && time_ms) {
+        start_time = time_ms;
+        first_frame = false;
+      } else if (!last_frame && time_ms >= turn_time) {
+        time_ms = turn_time;
+        last_frame = true;
+        camera.position.set(12.2, 5.3, 8.6)
+      }
       controls.update();
+   
       requestAnimationFrame(render_loop);
 
       // TODO: this is broken due to bad linking.
@@ -112,16 +141,29 @@ class MainPortalCube {
 
       portal.onBeforeRender();
 
+      if (time_ms - start_time < turn_time) {
+        time_ms -= start_time;
+        
+        // console.log(time_ms);
+        // var delta = Math.sqrt(1 - time_ms / turn_time) * 0.014  ;
+        // rotation += delta;
+        // console.log(rotation);
 
-      // var delta = 0.000;
-      // rotation += delta;
+        // var new_x = Math.sin(rotation) * distance;
+        // var new_z = Math.cos(rotation) * distance;
 
-      // var new_x = Math.sin(rotation) * distance;
-      // var new_z = Math.cos(rotation) * distance;
+        // camera.position.x = new_x;
+        // camera.position.z = new_z;
+        
 
-      // camera.position.x = new_x;
-      // camera.position.z = new_z;
-      // camera.lookAt(new THREE.Vector3(0, 0, 0));
+        // Runs from 1-0, decellerating
+        let arc_progress = 1-Math.sqrt(time_ms/turn_time);
+        let end_angle = arc_progress * turn_angle + 0.62;
+        camera.position.x = Math.cos(end_angle) * distance;
+        camera.position.z = Math.sin(end_angle) * distance;
+        
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+      }
 
       renderer.render(scene, camera);
     }
