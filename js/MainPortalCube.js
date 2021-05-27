@@ -138,18 +138,25 @@ class MainPortalCube {
     let last_frame = false;
     var start_time = 0.0;
 
-    let turn_time = 1300;
+    let turn_time = 2200;
     let turn_angle = 0.7;
 
     function render_loop(time_ms) {
 
       if (first_frame && time_ms) {
+        // Set the start time the first time this runs.
         start_time = time_ms;
         first_frame = false;
-      } else if (!last_frame && time_ms >= turn_time) {
-        time_ms = turn_time;
+        console.log("started. start time:", start_time);
+        // document.getElementById("cube-canvas").classList.remove("opacity0");
+        // document.getElementById("title-name").classList.remove("opacity0");
+        // $("#title-name").animate({'opacity':'1'},1500);
+      } else if (!last_frame && time_ms - start_time >= turn_time) {
+        // Make sure we finish the animation exactly.
+        //time_ms = turn_time;
         last_frame = true;
-        camera.position.set(12.2, 5.3, 8.6)
+        // camera.position.set(12.2, 5.3, 8.6)
+        console.log("done!");
       }
       controls.update();
    
@@ -160,10 +167,12 @@ class MainPortalCube {
 
       portal.onBeforeRender();
 
+      
       if (time_ms - start_time < turn_time) {
-        time_ms -= start_time;
+        console.log(time_ms);
+        time_ms = Math.max(0, time_ms - start_time);
         
-        // console.log(time_ms);
+        
         // var delta = Math.sqrt(1 - time_ms / turn_time) * 0.014  ;
         // rotation += delta;
         // console.log(rotation);

@@ -34,7 +34,7 @@
             </div> -->
         <div class="section-content" style="width: 100%; text-align: center;">
             <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
-                <div id="cube-canvas" class="fadein opacity0" style="height: 28em; width: 28em; margin: -2em auto;">
+                <div id="cube-canvas" class="opacity0" style="height: 28em; width: 28em; margin: -2em auto;">
                 </div>
             </div>
 
@@ -43,15 +43,21 @@
                     import { Utils } from '/webgl-portals/examples/js/utils/Utils.js'; 
                     import { MainPortalCube } from './js/MainPortalCube.js';
                     $(document).ready(function () { 
-                        Utils.loadShaders(function() {
-                            var cube_scene = new MainPortalCube(document.getElementById("cube-canvas"));
-                            cube_scene.render();
-                            window.cube_scene = cube_scene;
-                            document.getElementById("cube-canvas").classList.remove("opacity0");
-                        });
+                        var cube_scene = new MainPortalCube(document.getElementById("cube-canvas"));
+                        window.cube_scene = cube_scene;
+
+                        $("#title-name").animate({'opacity':'1'}, 600);
+                        cube_scene.render();
+
+                        // let cubeFadeIn = function() {
+                        //     $("#cube-canvas").animate({'opacity':'1'}, 1200);
+                        // }
+                        // setTimeout(cubeFadeIn, 1000);
+                        $("#cube-canvas").animate({'opacity':'1'}, 1000);
+                        
                     });
                 </script>
-            <div class="fadeinDelay">
+            <div id="title-name" class="opacity0">
                 <h1> Bryce Evans </h1>
                 <span class="subtitle" style="font-size: 22px;">Computer Vision | Computational Photography | Graphics
                 </span>
