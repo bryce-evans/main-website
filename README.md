@@ -2,8 +2,9 @@
 Main website for bryce.me
 
 checkout submodules
-git submodule update --init --recursive
 
+git submodule update --init --recursive
+git submodule foreach --recursive git checkout master
 
 Things to include
 bryce.me
