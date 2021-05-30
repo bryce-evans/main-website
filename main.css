@@ -1,13 +1,12 @@
 /* 
 light orange ff833b
-red orange   EC3F12
+red orange      
 light blue   21addb
 royal blue   0094c5
 blue         007095
  */
 
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
 
 @font-face {
     font-family: helvetica-neue;
@@ -44,7 +43,7 @@ html {
     font-family: 'Open Sans', sans-serif;
     /* font-family: merriweather, serif; */
     color: #333;
-    background-image: url("watercolor-paper-small.jpg");
+    background-image: url("watercolor-paper-blue-white-small.jpg");
     background-size: 600px;
     background-repeat: repeat;
 }
@@ -54,14 +53,13 @@ html {
     color: white;
     -webkit-background-clip: none;
     -webkit-text-fill-color: white;
-  }
+}
 
 body {
     margin: 0;
 }
 
 .header {
-    font-family: zona;
     margin: 0;
     padding: 0;
     position: absolute;
@@ -107,9 +105,9 @@ a:hover {
     text-decoration: underline;
 }
 
-a:visited {
+/* a:visited {
     color: #c5340f;
-}
+} */
 
 h1,
 h2,
@@ -121,6 +119,11 @@ h6 {
     font-weight: 900;
     margin: 12px;
     /* text-transform: uppercase; */
+}
+
+h1,
+h2 {
+    letter-spacing: .5px;
 }
 
 h1 {
@@ -139,6 +142,21 @@ h1.gradient {
     background: -webkit-linear-gradient(45deg, #007095, #EC3F12 18%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    margin: 0;
+}
+
+h3.inline {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    display: inline;
+}
+
+.team {
+    font-style: italic;
+    color: #444;
 }
 
 @keyframes fadeIn {
@@ -234,9 +252,11 @@ h1.gradient {
 .opacity0 {
     opacity: 0;
 }
+
 .fadein {
     animation: fadeIn ease 2s;
 }
+
 .fadeinDelay {
     animation: fadeInDelay ease 2s;
     /* -webkit-animation: fadeIn ease 0.3s;
@@ -272,19 +292,47 @@ h1.gradient {
     transform: skewY(-8deg);
 }
 
-.section.footer{
-    min-height: 20ex;
+.section.footer {
+    min-height: 0ex;
+}
+
+.section.footer a {
+    color: white;
+}
+
+.section .copyright {
+    font-size: 10px;
+    color: #aaa;
+    position: absolute;
+    margin: 0 auto;
+    font-weight: 700;
+    /* position: relative;  */
+}
+.copycontainer {
+    position: absolute;
+    bottom: 0;
 }
 
 .section-content {
-    max-width: 50em;
+    max-width: 960px;
     margin: 0 auto;
     position: relative;
+    padding: 4ex 0;
 }
+
+.blue .section-content div {
+    text-align: center;
+}
+
+.blue .card p {
+    text-align: left;
+}
+
 
 .blue.section {
     background-color: #00abe4;
     color: #eee;
+    min-height: 65ex;
 }
 
 
@@ -310,14 +358,26 @@ h1.gradient {
     color: #eee;
 }
 
-.card {
+.section-content .card {
     padding: 1ex;
     border-radius: 4px;
-    border: 1px solid #fcfcfc;
+    /* border: 1px solid #fcfcfc; */
     width: 25%;
     display: inline-block;
     min-height: 20ex;
     margin: 2ex;
+    height: 45ex;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.section-content .big.card {
+    width: 42%;
+}
+
+.card h3 {
+    font-family: 'Open Sans';
+    font-weight: 700;
 }
 
 .dark .card {
@@ -341,9 +401,13 @@ h1.gradient {
     flex: 65%;
 }
 
+.border {
+    border: 1px solid rgb(161, 161, 161);
+    padding: 2ex;
+    display: inline-block;
+}
+
 .cropped-img {
-    width: 218px;
-    height: 320px;
     background-position: center center;
     background-repeat: no-repeat;
     /* background-size: contain; */
@@ -399,16 +463,19 @@ h1.gradient {
     color: #fcfcfc;
     background-size: .5em .5em, 100% 100%;
 }
-.striped h2 {
+
+.striped h2,
+.striped h3 {
     text-shadow: -1px -1px 1px rgb(0 0 0 / 35%);
 }
-.striped.blue {
+
+.striped.dblue {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, rgb(0, 182, 238), rgb(0, 100, 139));
 }
 
-.striped.green {
+.striped.blue {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #0cc, rgb(0, 94, 131));
@@ -636,3 +703,50 @@ h1.gradient {
     cursor: pointer;
     width: 605px;
 } */
+
+
+
+.hexagon {
+    position: relative;
+    width: 160px;
+    height: 92.38px;
+    background-color: #ffffff;
+    margin: 46.19px 0;
+    border-left: solid 8px #ec3f12;
+    border-right: solid 8px #ec3f12;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 113.14px;
+    height: 113.14px;
+    -webkit-transform: scaleY(0.5774) rotate(-45deg);
+    -ms-transform: scaleY(0.5774) rotate(-45deg);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 15.4315px;
+}
+
+.hexagon:before {
+    top: -56.5685px;
+    border-top: solid 11.3137px #ec3f12;
+    border-right: solid 11.3137px #ec3f12;
+}
+
+.hexagon:after {
+    bottom: -56.5685px;
+    border-bottom: solid 11.3137px #ec3f12;
+    border-left: solid 11.3137px #ec3f12;
+}
+
+.image-placeholder {
+    width: 100%;
+    display: block;
+    min-height: 20ex;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin: 1ex 0;
+}
