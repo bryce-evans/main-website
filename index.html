@@ -1,11 +1,11 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="/webgl-portals/modules/jquery/build/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="/webgl-portals/modules/three.js/build/three.js"></script>
-    <script data-src="/webgl-portals/examples/shaders/portal_water.vertex" type="x-shader/x-vertex" id="vertexShader">
+    <script type="text/javascript" src="webgl-portals/modules/jquery/build/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="webgl-portals/modules/three.js/build/three.js"></script>
+    <script data-src="webgl-portals/examples/shaders/portal_water.vertex" type="x-shader/x-vertex" id="vertexShader">
     </script>
-    <script data-src="/webgl-portals/examples/shaders/portal_water.frag" type="x-shader/x-fragment" id="fragmentShader">
+    <script data-src="webgl-portals/examples/shaders/portal_water.frag" type="x-shader/x-fragment" id="fragmentShader">
     </script>
     <link rel="stylesheet" href="main.css">
     </link>
@@ -47,7 +47,7 @@
                         window.cube_scene = cube_scene;
 
                         $("#title-name").animate({'opacity':'1'}, 600);
-                        cube_scene.render();
+                        // cube_scene.render();
 
                         // let cubeFadeIn = function() {
                         //     $("#cube-canvas").animate({'opacity':'1'}, 1200);
@@ -59,20 +59,48 @@
                 </script>
             <div id="title-name" class="opacity0">
                 <h1> Bryce Evans </h1>
-                <span class="subtitle" style="font-size: 22px;">Computer Vision | Computational Photography | Graphics
+                <span class="subtitle" style="font-size: 22px;">Computer Vision | Image Processing | Graphics
                 </span>
             </div>
         </div>
     </div>
-    </div>
-    <div class="section diagonal striped green">
+
+    <div class="section diagonal striped blue">
         <div class="section-content">
             <span style="font-weight: 200;">
                 <h2>I work with images.</h2>
+                <!-- <h2>I Makes Things Look Good.</h2> -->
             </span>
-            <div class="card">ML Engineering</div>
-            <div class="card">Classical Vision & Graphics background</div>
-            <div class="card">Photography & Graphic Art</div>
+            <div>
+                <div>
+                    <!-- <h3 class="inline">ML Engineering:</h3>  Professionally, I train models on camera data for applications in robotics.<br>
+                    <h3 class="inline">Photography:</h3> I manage a photography studio for studio for family portraits, events, and performances.<br>
+                    <h3 class="inline">Graphics & Art:</h3> In my free time, I enjoy building renderers, game engines, and digital 3D art. -->
+
+                    <div class="card">
+                        <div class="image-placeholder"></div>
+                        <h3>ML Engineering</h3>
+                        <p> Professionally, I train models on camera data for rich 3D scene understanding. </p>
+                    </div>
+                    <div class="card">
+                        <div class="image-placeholder"></div>
+                        <h3>Photography</h3>
+                        <p>I manage a photography studio for studio for family portraits, events, and performances.</p>
+                    </div>
+                    <!-- <div class="card">
+                        <div class="image-placeholder"></div>
+                        <h3>Photography</h3>
+                        <p>I manage a photography studio for studio for family portraits, events, and performances.</p>
+                    </div> -->
+                    <div class="card">
+                        <div class="image-placeholder"></div>
+                        <h3>Graphics & Art</h3>
+                        <p>In my free time, I enjoy building renderers, game engines, and modeling digital 3D art.</p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <!-- <div class="section-content">
             <span style="font-weight: 200;">
@@ -87,56 +115,149 @@
 
     <div class="section diagonal-bottom-only">
         <div class="section-content">
-            <h2>Past Work</h2>
-            <span>I work on Dection at Cruise in San Francisco.</span>
-        </div>
-    </div>
-
-    <div class="section striped lime diagonal">
-        <div class="section-content">
-            <h2>Other Interests</h2>
             
-        </div>
-
-    </div>
-    <div class="section">
-        <div class="section-content">
+            
             <div>
                 <h2>Photography</h2>
             </div>
 
             <div class='two-col'>
-                <div class="col-big">Portrait photography
+                <div class="col-big">Portrait photography for families, events, and performances.<br>
 
                     See my full portfolio at <a href="http://bryce.photo" target="_blank">bryce.photo</a>.
+                    <br><br><br><br>
+                    <div class="border">
+                        <div class="cropped-img"
+                            style="    width: 400px;
+                                height: 315px; background-image: url(https://live.staticflickr.com/900/27235784608_1a296c36b4_c.jpg);"
+                            alt=""></div>
+                    </div>
                 </div>
                 <div class="col-small" style="margin-right: 2em;
                 ">
-                    <div style="border: 1px solid rgb(161, 161, 161);
-                padding: 2ex; ">
+                    <div class="border">
                         <div class="cropped-img"
-                            style="background-image: url(https://farm66.staticflickr.com/65535/50109616953_26d2af7bd0_c.jpg);"
+                            style="    width: 218px;
+                            height: 320px; background-image: url(https://farm66.staticflickr.com/65535/50109616953_26d2af7bd0_c.jpg);"
                             alt=""></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div class="section-content">
+            <h2>Past Work</h2>
+            <span>I work on Dection at Cruise in San Francisco.</span>
+            <div>
+                <div class="">
+                    <div class="hexagon"></div>
+                    <h3>Cruise</h3>
+                    <span class="team">Detection</span>
+                </div>
+                <div class="">
+                    <h3>Zoox</h3>
+                    <span class="team">Vision</span>
+                </div>
+                <div class="">
+                    <h3>Facebook</h3>
+                    <span class="team">Computational Photography</span>
+                </div>
+                <div> Resume </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="section striped lime diagonal">
+        <div class="section-content">
+            <h2>Other Projects</h2>
+            Some recent and popular projects I've done for fun:
+            <div>
+                <div>
+                    <div class="big card">
+                        <div class="image-placeholder"></div>
+                        <h3>WebGL Portals</h3>
+                        <p>The most advanced WebGL portal framework created.
+                            Lightweight and flexible, it supports
+                            <ul>
+                                <li>recursive rendering for portals inside portals</li>
+                                <li>seemless rendering to create "windows"</li>
+                                <li>clip computations for half-in half-out rendering</li>
+                                <li>non-planar portal geometry</li>
+                                <li>perspective cameras (rendering a perspective scene inside a perspective scene
+                                    naively will cause bad distortion)</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="big card">
+                        <div class="image-placeholder"></div>
+                        <h3>CritterWorld 3D</h3>
+                        <p>A WebGL front-end for a course project I TAed.
+                            https://github.com/bryce-evans/CritterWorld-3D
+                        </p>
+                    </div>
+                    <div class="big card">
+                        <div class="image-placeholder"></div>
+                        <h3>LobLib: The Lobster Library</h3>
+                        <p>
+                            My most popular GitHub project,
+                            LobLib is a LaTex package for filling the whitespace in your documents
+                            with many, many images of lobsters.
+                        </p>
+                    </div>
+                    <div class="big card">
+                        <div class="image-placeholder"></div>
+                        <h3>Fourth Project</h3>
+                        <p>
+                            Placeholder
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="section striped lime diagonal">
+    <div class="section">
+        <div class="section-content">
+            <h2>Contact</h2>
+
+            <ul>
+                <li>Email <a>hello@bryce.me</a></li>
+                <li>Photography <a>hello@bryce.photo</a></li>
+                <li>GitHub <a>@bryce-evans</a></li>
+                <li>Flickr <a href="https://www.flickr.com/photos/bryce-evans/">@bryce-evans</a></li>
+                <li>FB <a href="http://fb.com/bae">@bae</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+    <!-- <div class="section striped lime diagonal">
         <div class="section-content">
             <h2>Other Interests</h2>
             
-        </div>
+        </div> -->
 
     <div class="section footer striped black diagonal-top-only">
-        <div class="section-content">
-            <h2>Links and More</h2>
-            <div><span>GitHub @bryce-evans</span> <span>Resume</span> <span>Contact</span></div>
+
+        <div class="copyright" style="position: absolute;  
+        width:960px;
+        bottom:0px;
+        left:50%;
+        margin-left:-480px;">
+            <div style="position: absolute;
+            right: 0;
+            bottom: 4px;">
+                <div>Website, Photography, Portal Cube &copy;<span class="year"></span> Bryce Evans</div>
+            </div>
+
         </div>
 
     </div>
-    </div>
+    <script>
+        // Set year for copyright.
+        $(".year").text(new Date().getFullYear());
+    </script>
 
 </body>
 
