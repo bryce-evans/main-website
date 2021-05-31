@@ -294,10 +294,16 @@ h3.inline {
 
 .section.footer {
     min-height: 0ex;
+    height: 4em;
+    
 }
 
 .section.footer a {
     color: white;
+}
+
+.section.contact {
+    /* min-height: 32ex; */
 }
 
 .section .copyright {
@@ -485,6 +491,10 @@ h3.inline {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.05) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #b8f317, #00c97c);
+        /* this is a bad hack. no idea why this is needed */
+        clip-path: polygon(0% calc(var(--clip-padding) * 2), 100% 0%, 100% 87.5%, 0% 100%);
+        -webkit-clip-path: polygon(0% calc(var(--clip-padding) * 2), 100% 0%, 100% 87.5%, 0% 100%)
+    }
 }
 
 .striped.orange {
@@ -503,6 +513,8 @@ h3.inline {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.1) 50%, 0, transparent 100%),
         linear-gradient(-135deg, #333333, #242424);
+        clip-path: polygon(30% calc(var(--clip-padding) * 2), 100% 0%, 100% 72%, 30% 72%);
+        -webkit-clip-path: polygon(30% calc(var(--clip-padding) * 2), 100% 100%, 100% 0%, 30% 100%);
 }
 
 .diagonal {
@@ -524,7 +536,7 @@ h3.inline {
     position: relative;
     /* margin-top: calc( ( var(--clip-padding) * -1 ) - 2px ); */
 
-    padding: calc((var(--clip-padding) * 2) - (var(--clip-padding) - var(--skew-padding))) 0 4em;
+    /* padding: calc((var(--clip-padding) * 2) - (var(--clip-padding) - var(--skew-padding))) 0 4em; */
     clip-path: polygon(0% calc(var(--clip-padding) * 2),
             100% 0%,
             100% 100%,
