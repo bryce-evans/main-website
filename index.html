@@ -11,7 +11,7 @@
     </link>
 </head>
 
-<body>
+<body style="max-height: 76ex; overflow: hidden;">
     <div id="debug_uvs"></div>
     <div class="header hidden">
         <!-- <div>
@@ -34,7 +34,7 @@
             </div> -->
         <div class="section-content" style="width: 100%; text-align: center;">
             <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
-                <div id="cube-canvas" class="opacity0" style="height: 28em; width: 28em; margin: -2em auto;">
+                <div id="cube-canvas" class="xxxopacity0" style="height: 28em; width: 28em; margin: -2em auto;">
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                         window.cube_scene = cube_scene;
 
                         $("#title-name").animate({'opacity':'1'}, 600);
-                        // cube_scene.render();
+                        cube_scene.render();
 
                         // let cubeFadeIn = function() {
                         //     $("#cube-canvas").animate({'opacity':'1'}, 1200);
@@ -61,48 +61,59 @@
                 <h1> Bryce Evans </h1>
                 <span class="subtitle" style="font-size: 22px;">Computer Vision | Image Processing | Graphics
                 </span>
+                <div id="icons">
+                    <a href="https://github.com/bryce-evans"><img src="icons/github.png" alt="GitHub" width=32 height=32/></a>
+                    <a href="https://www.linkedin.com/in/bae43/"><img src="icons/linkedin.png" alt="LinkedIn" width=32 height=32/></a>
+                    <a href="/resume"><img src="icons/resume.png" alt="Resume" width=32 height=32/></a>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Temporary footer while sections are still missing content -->
+    <div class="section footer striped blue diagonal-top-only" style="">
+    </div>
 
-    <div class="section diagonal striped blue">
-        <div class="section-content">
-            <span style="font-weight: 200;">
-                <h2>I work with images.</h2>
-                <!-- <h2>I Makes Things Look Good.</h2> -->
-            </span>
-            <div>
+    <div id="other-section-content" class="hidden">
+        <div class="section diagonal striped blue">
+            <div class="section-content">
+                <span style="font-weight: 200;">
+                    <h2>I work with images.</h2>
+                    <!-- <h2>I Makes Things Look Good.</h2> -->
+                </span>
                 <div>
-                    <!-- <h3 class="inline">ML Engineering:</h3>  Professionally, I train models on camera data for applications in robotics.<br>
+                    <div>
+                        <!-- <h3 class="inline">ML Engineering:</h3>  Professionally, I train models on camera data for applications in robotics.<br>
                     <h3 class="inline">Photography:</h3> I manage a photography studio for studio for family portraits, events, and performances.<br>
                     <h3 class="inline">Graphics & Art:</h3> In my free time, I enjoy building renderers, game engines, and digital 3D art. -->
 
-                    <div class="card">
-                        <div class="image-placeholder"></div>
-                        <h3>ML Engineering</h3>
-                        <p> Professionally, I train models on camera data for rich 3D scene understanding. </p>
-                    </div>
-                    <div class="card">
-                        <div class="image-placeholder"></div>
-                        <h3>Photography</h3>
-                        <p>I manage a photography studio for studio for family portraits, events, and performances.</p>
-                    </div>
-                    <!-- <div class="card">
+                        <div class="card">
+                            <div class="image-placeholder"></div>
+                            <h3>ML Engineering</h3>
+                            <p> Professionally, I train models on camera data for rich 3D scene understanding. </p>
+                        </div>
+                        <div class="card">
+                            <div class="image-placeholder"></div>
+                            <h3>Photography</h3>
+                            <p>I manage a photography studio for studio for family portraits, events, and performances.
+                            </p>
+                        </div>
+                        <!-- <div class="card">
                         <div class="image-placeholder"></div>
                         <h3>Photography</h3>
                         <p>I manage a photography studio for studio for family portraits, events, and performances.</p>
                     </div> -->
-                    <div class="card">
-                        <div class="image-placeholder"></div>
-                        <h3>Graphics & Art</h3>
-                        <p>In my free time, I enjoy building renderers, game engines, and modeling digital 3D art.</p>
+                        <div class="card">
+                            <div class="image-placeholder"></div>
+                            <h3>Graphics & Art</h3>
+                            <p>In my free time, I enjoy building renderers, game engines, and modeling digital 3D art.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
-
-
-        </div>
-        <!-- <div class="section-content">
+            <!-- <div class="section-content">
             <span style="font-weight: 200;">
                 <h2>I love working with imagery</h2>
             </span>
@@ -111,42 +122,42 @@
             <div class="card">Art as a Hobby</div>
         </div> -->
 
-    </div>
-
-    <div class="section diagonal-bottom-only">
-        <div class="section-content">
-            
-            
-            <div>
-                <h2>Photography</h2>
-            </div>
-
-            <div class='two-col'>
-                <div class="col-big">Portrait photography for families, events, and performances.<br>
-
-                    See my full portfolio at <a href="http://bryce.photo" target="_blank">bryce.photo</a>.
-                    <br><br><br><br>
-                    <div class="border">
-                        <div class="cropped-img"
-                            style="    width: 400px;
-                                height: 315px; background-image: url(https://live.staticflickr.com/900/27235784608_1a296c36b4_c.jpg);"
-                            alt=""></div>
-                    </div>
-                </div>
-                <div class="col-small" style="margin-right: 2em;
-                ">
-                    <div class="border">
-                        <div class="cropped-img"
-                            style="    width: 218px;
-                            height: 320px; background-image: url(https://farm66.staticflickr.com/65535/50109616953_26d2af7bd0_c.jpg);"
-                            alt=""></div>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
-        <!-- <div class="section-content">
+        <div class="section diagonal-bottom-only">
+            <div class="section-content">
+
+
+                <div>
+                    <h2>Photography</h2>
+                </div>
+
+                <div class='two-col'>
+                    <div class="col-big">Portrait photography for families, events, and performances.<br>
+
+                        See my full portfolio at <a href="http://bryce.photo" target="_blank">bryce.photo</a>.
+                        <br><br><br><br>
+                        <div class="border">
+                            <div class="cropped-img"
+                                style="    width: 400px;
+                                height: 315px; background-image: url(https://live.staticflickr.com/900/27235784608_1a296c36b4_c.jpg);"
+                                alt=""></div>
+                        </div>
+                    </div>
+                    <div class="col-small" style="margin-right: 2em;
+                ">
+                        <div class="border">
+                            <div class="cropped-img"
+                                style="    width: 218px;
+                            height: 320px; background-image: url(https://farm66.staticflickr.com/65535/50109616953_26d2af7bd0_c.jpg);"
+                                alt=""></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- <div class="section-content">
             <h2>Past Work</h2>
             <span>I work on Dection at Cruise in San Francisco.</span>
             <div>
@@ -166,99 +177,100 @@
                 <div> Resume </div>
             </div>
         </div> -->
-    </div>
+        </div>
 
-    <div class="section striped lime diagonal">
-        <div class="section-content">
-            <h2>Other Projects</h2>
-            Some recent and popular projects I've done for fun:
-            <div>
+        <div class="section striped lime diagonal">
+            <div class="section-content">
+                <h2>Other Projects</h2>
+                Some recent and popular projects I've done for fun:
                 <div>
-                    <div class="big card">
-                        <div class="image-placeholder"></div>
-                        <h3>WebGL Portals</h3>
-                        <p>The most advanced WebGL portal framework created.
-                            Lightweight and flexible, it supports
-                            <ul>
-                                <li>recursive rendering for portals inside portals</li>
-                                <li>seemless rendering to create "windows"</li>
-                                <li>clip computations for half-in half-out rendering</li>
-                                <li>non-planar portal geometry</li>
-                                <li>perspective cameras (rendering a perspective scene inside a perspective scene
-                                    naively will cause bad distortion)</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div class="big card">
-                        <div class="image-placeholder"></div>
-                        <h3>CritterWorld 3D</h3>
-                        <p>A WebGL front-end for a course project I TAed.
-                            https://github.com/bryce-evans/CritterWorld-3D
-                        </p>
-                    </div>
-                    <div class="big card">
-                        <div class="image-placeholder"></div>
-                        <h3>LobLib: The Lobster Library</h3>
-                        <p>
-                            My most popular GitHub project,
-                            LobLib is a LaTex package for filling the whitespace in your documents
-                            with many, many images of lobsters.
-                        </p>
-                    </div>
-                    <div class="big card">
-                        <div class="image-placeholder"></div>
-                        <h3>Fourth Project</h3>
-                        <p>
-                            Placeholder
-                        </p>
+                    <div>
+                        <div class="big card">
+                            <div class="gif" style="background-image: url(/ignore/portal-demo-2.gif);"></div>
+                            <h3>WebGL Portals</h3>
+                            <p>A performant WebGL portal framework.
+                                Lightweight and flexible, it supports
+                                <ul>
+                                    <!-- <li>recursive rendering for portals inside portals</li> -->
+                                    <li>seemless rendering to create "windows"</li>
+                                    <li>clip computations for half-in half-out rendering</li>
+                                    <li>non-planar portal geometry</li>
+                                    <!-- <li>perspective cameras (rendering a perspective scene inside a perspective scene
+                                    naively will cause bad distortion)</li> -->
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="big card">
+                            <div class="image-placeholder"></div>
+                            <h3>CritterWorld 3D</h3>
+                            <p>A WebGL front-end for a course project I TAed.
+                                https://github.com/bryce-evans/CritterWorld-3D
+                            </p>
+                        </div>
+                        <div class="big card">
+                            <div class="image-placeholder"></div>
+                            <h3>LobLib: The Lobster Library</h3>
+                            <p>
+                                My most popular GitHub project,
+                                LobLib is a LaTex package for filling the whitespace in your documents
+                                with many, many images of lobsters.
+                            </p>
+                        </div>
+                        <div class="big card">
+                            <div class="image-placeholder"></div>
+                            <h3>Fourth Project</h3>
+                            <p>
+                                Placeholder
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div>
-    <div class="contact section">
-        <div class="section-content">
-            <h2>Contact</h2>
-
-            <ul>
-                <li>Email <a>hello@bryce.me</a></li>
-                <li>Photography <a>hello@bryce.photo</a></li>
-                <li>GitHub <a>@bryce-evans</a></li>
-                <li>Flickr <a href="https://www.flickr.com/photos/bryce-evans/">@bryce-evans</a></li>
-                <li>FB <a href="http://fb.com/bae">@bae</a></li>
-            </ul>
-
 
         </div>
-    </div>
-    <!-- <div class="section striped lime diagonal">
+        <div class="contact section">
+            <div class="section-content">
+                <h2>Contact</h2>
+
+                <!-- <div class="hex"></div> -->
+                <ul>
+                    <li>Email <a>hello@bryce.me</a></li>
+                    <li>Photography <a>hello@bryce.photo</a></li>
+                    <li>GitHub <a>@bryce-evans</a></li>
+                    <li>Flickr <a href="https://www.flickr.com/photos/bryce-evans/">@bryce-evans</a></li>
+                    <li>FB <a href="http://fb.com/bae">@bae</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+        <!-- <div class="section striped lime diagonal">
         <div class="section-content">
             <h2>Other Interests</h2>
             
         </div> -->
 
-    <div class="section footer striped black diagonal-top-only">
+        <div class="section footer striped black diagonal-top-only">
 
-        <div class="copyright" style="position: absolute;  
+            <div class="copyright" style="position: absolute;  
         width:960px;
         bottom:0px;
         left:50%;
-        margin-left:-480px;">
-            <div style="position: absolute;
+        margin-left:-320px;">
+                <div style="position: absolute;
             right: 0;
             bottom: 4px;">
-                <div>Website, Photography, Portal Cube &copy;<span class="year"></span> Bryce Evans</div>
+                    <div>Website, Photography, Portal Cube &copy;<span class="year"></span> Bryce Evans</div>
+                </div>
+
             </div>
 
         </div>
-
+        <script>
+            // Set year for copyright.
+            $(".year").text(new Date().getFullYear());
+        </script>
     </div>
-    <script>
-        // Set year for copyright.
-        $(".year").text(new Date().getFullYear());
-    </script>
-
 </body>
 
 </html>
