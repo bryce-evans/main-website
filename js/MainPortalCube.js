@@ -128,7 +128,7 @@ class MainPortalCube {
       this.seen = visible;
     }
 
-    setInterval(this.swapScenes.bind(this), 2000);
+    setInterval(this.swapScenes.bind(this), 500);
 
     // Used to rotate the cube automatically.
     const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
