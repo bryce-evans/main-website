@@ -350,10 +350,6 @@ h3.inline {
 }
 
 .section-content {
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative;
-    padding: 4ex 0;
     z-index: 2;
 }
 
