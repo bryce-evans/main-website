@@ -863,13 +863,8 @@ h3.inline {
  */
 
 
- @media only screen 
- and (hover: none) and (pointer: coarse) {
-    #icons>a>img{
-        height: 64px;
-        width: 64px;
-    }
-    
+@media only screen and (hover: none) and (pointer: coarse) {
+
     h1 {
         font-size: 61pt;
     }
@@ -886,5 +881,14 @@ h3.inline {
         height: 42em;
         width: 42em;
         margin: -3em auto;
+    }
+
+    #icons>a>img {
+        height: 64px;
+        width: 64px;
+    }
+
+    #icons>a>img:hover {
+        transform: rotate(0deg);
     }
 }
