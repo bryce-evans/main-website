@@ -24,7 +24,13 @@ class MainPortalCube {
     this.scene = scene;
 
     // var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
-    const cam_size = 50;
+    var cam_size;
+    if (window.mobileAndTabletCheck()) {
+      cam_size = 75;
+    } else {
+      cam_size = 50;
+    }
+    
     const camera = new THREE.OrthographicCamera(width / -cam_size, width / cam_size, height / cam_size, height / -cam_size, 1, 1000);
 
     // camera.position.set(11, 2.5, 11);
