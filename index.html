@@ -27,12 +27,12 @@
             <h2> <span class="gradient-text">Bryce Evans</span></h2>
         </div> -->
     </div>
-    <div class="section" style="margin-top: -0.5em;">
+    <div class="title section" style="margin: 0; padding: 0;">
         <!-- <div class="section-content">
                 <h2 style="font-weight: 900; font-size: 32pt; color:#EC3F12">Hello!</h2>
                 <br> <span style="font-size: 22px;"></span>
             </div> -->
-        <div class="section-content" style="width: 100%; text-align: center;">
+        <div class="title section-content" style="width: 100%; text-align: center;">
             <div style="max-width: 960px; text-align: center; margin: auto; position: relative;">
                 <div id="cube-canvas" class="xxxopacity0" style="height: 28em; width: 28em; margin: -2em auto;">
                 </div>
@@ -62,17 +62,21 @@
                 <span class="subtitle" style="font-size: 22px;">Computer Vision | Image Processing | Graphics
                 </span>
                 <div id="icons">
-                    <a href="https://github.com/bryce-evans"><img src="icons/github.png" alt="GitHub" width=32 height=32/></a>
-                    <a href="https://www.linkedin.com/in/bae43/"><img src="icons/linkedin.png" alt="LinkedIn" width=32 height=32/></a>
-                    <a href="https://bryce.photo/"><img src="icons/photography.png" alt="Photography" width=32 height=32/></a>
-                    <a href="/resume"><img src="icons/resume.png" alt="Resume" width=32 height=32/></a>
+                    <a href="https://github.com/bryce-evans"><img src="icons/github.png" alt="GitHub" width=32
+                            height=32 /></a>
+                    <a href="https://www.linkedin.com/in/bae43/"><img src="icons/linkedin.png" alt="LinkedIn" width=32
+                            height=32 /></a>
+                    <a href="http://bryce.photo/"><img src="icons/photography.png" alt="Photography" width=32
+                            height=32 /></a>
+                    <a href="/resume"><img src="icons/resume.png" alt="Resume" width=32 height=32 /></a>
                 </div>
             </div>
         </div>
+        <!-- Temporary footer while sections are still missing content -->
+        <div class="section footer striped blue diagonal-top-only" style="min-height: 0;">
+        </div>
     </div>
-    <!-- Temporary footer while sections are still missing content -->
-    <div class="section footer striped blue diagonal-top-only" style="min-height: 0;">
-    </div>
+
 
     <div id="other-section-content" class="hidden">
         <div class="section diagonal striped blue">
@@ -272,6 +276,20 @@
             $(".year").text(new Date().getFullYear());
         </script>
     </div>
+
+    <script>
+        function formatToCurrentScreen() {
+            let height = window.height;
+            let width = window.width;
+
+            let top = Math.max(0, $(".title.section").height() / 2 - $(".title.section-content").height());
+            console.log("top", top);
+            $(".title.section-content").css("top", top + "px");
+        }
+        $(window).resize(formatToCurrentScreen);
+        $(document).ready(formatToCurrentScreen);
+    </script>
+
 </body>
 
 </html>
