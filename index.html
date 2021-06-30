@@ -278,13 +278,28 @@
     </div>
 
     <script>
+        /* Handles formatting on screen resize.
+         * This is hacky and should be done in CSS but it's faster to do it in JS.
+         * Magic numbers and hax galore ¯\_(ツ)_/¯ 
+         */
         function formatToCurrentScreen() {
             let height = window.height;
             let width = window.width;
 
-            let top = Math.max(0, $(".title.section").height() / 2 - $(".title.section-content").height());
+            // Because the footer is angled, the height calculation is weird and has some magic numbers used.
+            let footer_height = $(".footer").height() * 2 - 9;
+
+            // Position title cube nicely
+            let top = Math.max(32, (($(".title.section").height() - footer_height) / 2 - $(".title.section-content")
+                .height() / 2));
             console.log("top", top);
             $(".title.section-content").css("top", top + "px");
+
+            // Fix footer positioning when window is small.
+            // Will always be locked to bottom of screen, unless we need scrolling to see icons.
+            $(".footer").css("top", Math.max($(window).height() - footer_height - 18, $(
+                    ".title.section-content")
+                .height()));
         }
         $(window).resize(formatToCurrentScreen);
         $(document).ready(formatToCurrentScreen);
