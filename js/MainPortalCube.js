@@ -96,10 +96,6 @@ class MainPortalCube {
     // scene.add(portal_cube.wireGeometry());
     this.portal = portal_cube;
 
-    // var portal = new RandomGeometryScene({ "size": 5 });
-    // scene.add(portal);
-    // this.portal = portal;
-
     const debug_window = $('#debug_uvs');
     const show_uv_debug = false;
     if (show_uv_debug) {
@@ -184,27 +180,23 @@ class MainPortalCube {
 
     function render_loop(time_ms) {
 
-      if (first_frame && time_ms) {
-        // Set the start time the first time this runs.
-        start_time = time_ms;
-        first_frame = false;
-        console.log("started. start time:", start_time);
-        // document.getElementById("cube-canvas").classList.remove("opacity0");
-        // document.getElementById("title-name").classList.remove("opacity0");
-        // $("#title-name").animate({'opacity':'1'},1500);
-      } else if (!last_frame && time_ms - start_time >= turn_time) {
-        // Make sure we finish the animation exactly.
-        //time_ms = turn_time;
-        last_frame = true;
-        // camera.position.set(12.2, 5.3, 8.6)
-        console.log("done!");
-      }
+      // if (first_frame && time_ms) {
+      //   // Set the start time the first time this runs.
+      //   start_time = time_ms;
+      //   first_frame = false;
+      //   console.log("started. start time:", start_time);
+      // } else if (!last_frame && time_ms - start_time >= turn_time) {
+      //   last_frame = true;
+      // }
       controls.update();
    
       requestAnimationFrame(render_loop);
 
-      // TODO: this is broken due to bad linking.
-      // portal.rotation.y += 0.005;
+      // const turn_speed = 0.007;
+      // portal.rotation.y -= turn_speed;
+      // for(const p of portal.scenes){
+      //   p.rotation.y -= turn_speed;
+      // }
 
       if (self.debug_mode && self.debug_scene_index >= 0 && self.debug_scene_index < 6) {
         renderer.render(portal.scenes[self.debug_scene_index], camera);
@@ -219,15 +211,15 @@ class MainPortalCube {
         time_ms = Math.max(0, time_ms - start_time);
         
         
-        // var delta = Math.sqrt(1 - time_ms / turn_time) * 0.014  ;
-        // rotation += delta;
-        // console.log(rotation);
+        var delta = Math.sqrt(1 - time_ms / turn_time) * 0.014  ;
+        rotation += delta;
+        console.log(rotation);
 
-        // var new_x = Math.sin(rotation) * distance;
-        // var new_z = Math.cos(rotation) * distance;
+        var new_x = Math.sin(rotation) * distance;
+        var new_z = Math.cos(rotation) * distance;
 
-        // camera.position.x = new_x;
-        // camera.position.z = new_z;
+        camera.position.x = new_x;
+        camera.position.z = new_z;
         
 
         // Runs from 1-0, decellerating
