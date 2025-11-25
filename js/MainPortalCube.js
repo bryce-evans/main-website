@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import {OrbitControls} from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
 import {CubePortalLayout} from '../webgl-portals/src/layouts/CubePortalLayout.js';
 import {RandomGeometryScene} from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
@@ -15,6 +16,8 @@ class MainPortalCube {
     this.renderer.setClearColor(0xffffff, 0);
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(width, height);
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.toneMapping = THREE.NoToneMapping;
 
     target.appendChild(this.renderer.domElement);
 
@@ -88,7 +91,7 @@ class MainPortalCube {
     cube_scenes.push(new RandomGeometryScene({'size': 5}));
 
     const portal_render_resolution = 1024 * window.devicePixelRatio;
-    const portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, {size: 10, resolution_height: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256});
+    const portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, {size: 10, resolution_width: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256});
     scene.add(portal_cube);
     // scene.add(portal_cube.wireGeometry());
     this.portal = portal_cube;
@@ -102,11 +105,42 @@ class MainPortalCube {
     if (show_uv_debug) {
       this.portal.renderDebugUVs(true, debug_window);
     }
+
+    this.debug_mode = false;
+    this.debug_scene_index = -1;
+
     $(document).keydown(function(event) {
       if (event.which == 32) {
         // space bar: Show debug pane.
         $('#debug_uvs').show();
         this.show_debug_uvs = true;
+      }
+      // D key: Toggle debug mode
+      if (event.which == 68) {
+        this.debug_mode = !this.debug_mode;
+        this.debug_scene_index = -1;
+        console.log('Debug mode:', this.debug_mode ? 'ON' : 'OFF');
+
+        // Show/hide debug indicator
+        if (this.debug_mode) {
+          $('#debug-indicator').show();
+          $('#debug-scene').text('Press 1-6 for scenes, 0 for all');
+          console.log('Press 1-6 to view individual portal scenes, 0 to view all');
+        } else {
+          $('#debug-indicator').hide();
+        }
+      }
+      // Number keys 0-6: Select scene to debug
+      if (this.debug_mode && event.which >= 48 && event.which <= 54) {
+        this.debug_scene_index = event.which - 48 - 1; // 0 key = -1 (all scenes)
+        if (this.debug_scene_index === -1) {
+          $('#debug-scene').text('Viewing: Portal cube (all scenes)');
+          console.log('Viewing: Portal cube (all scenes)');
+        } else {
+          const sceneNames = ['Right (Green)', 'Random', 'Top (Red)', 'Random', 'Left (Blue)', 'Random'];
+          $('#debug-scene').text('Scene ' + (this.debug_scene_index + 1) + ': ' + sceneNames[this.debug_scene_index]);
+          console.log('Viewing scene', this.debug_scene_index, ':', sceneNames[this.debug_scene_index]);
+        }
       }
     }.bind(this));
   }
@@ -116,6 +150,7 @@ class MainPortalCube {
     const controls = this.controls;
     const scene = this.scene;
     const portal = this.portal;
+    const self = this;
 
     // Rotate in new scenes as the cube moves around.
     this.seen = this.portal.children.map(face => face.isVisible(this.camera));
@@ -171,9 +206,14 @@ class MainPortalCube {
       // TODO: this is broken due to bad linking.
       // portal.rotation.y += 0.005;
 
-      portal.onBeforeRender();
+      if (self.debug_mode && self.debug_scene_index >= 0 && self.debug_scene_index < 6) {
+        renderer.render(portal.scenes[self.debug_scene_index], camera);
+      } else {
+        portal.onBeforeRender();
+        renderer.render(scene, camera);
+      }
 
-      
+
       if (time_ms - start_time < turn_time) {
         console.log(time_ms);
         time_ms = Math.max(0, time_ms - start_time);
@@ -201,7 +241,9 @@ class MainPortalCube {
         camera.lookAt(new THREE.Vector3(0, 0, 0));
       }
 
-      renderer.render(scene, camera);
+      if (!self.debug_mode || self.debug_scene_index === -1) {
+        renderer.render(scene, camera);
+      }
     }
     render_loop();
   }
