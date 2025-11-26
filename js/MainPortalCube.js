@@ -4,6 +4,7 @@ import {CubePortalLayout} from '../webgl-portals/src/layouts/CubePortalLayout.js
 import {RandomGeometryScene} from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
 import {EncoderDecoderScene} from './scenes/EncoderDecoderScene.js';
 import {BoxGeometryScene} from './scenes/BoxGeometryScene.js';
+import {PortalHoverManager} from './PortalHoverManager.js';
 
 
 class MainPortalCube {
@@ -105,6 +106,8 @@ class MainPortalCube {
     this.debug_mode = false;
     this.debug_scene_index = -1;
 
+    this.hoverManager = new PortalHoverManager(this.renderer, scene, camera);
+
     $(document).keydown(function(event) {
       if (event.which == 32) {
         // space bar: Show debug pane.
@@ -189,7 +192,8 @@ class MainPortalCube {
       //   last_frame = true;
       // }
       controls.update();
-   
+      self.hoverManager.update();
+
       requestAnimationFrame(render_loop);
 
       // const turn_speed = 0.007;
