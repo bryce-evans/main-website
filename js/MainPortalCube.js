@@ -106,7 +106,7 @@ class MainPortalCube {
     this.debug_mode = false;
     this.debug_scene_index = -1;
 
-    this.hoverManager = new PortalHoverManager(this.renderer, scene, camera);
+    this.hoverManager = new PortalHoverManager(this.renderer, scene, camera, portal_cube);
 
     $(document).keydown(function(event) {
       if (event.which == 32) {
