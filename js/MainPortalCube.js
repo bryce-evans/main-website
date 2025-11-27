@@ -1,18 +1,7 @@
-import {
-  OrbitControls
-} from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
-import {
-  CubePortalLayout
-} from '../webgl-portals/src/layouts/CubePortalLayout.js';
-import {
-  RandomGeometryScene
-} from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
-import {
-  EncoderDecoderScene
-} from './scenes/EncoderDecoderScene.js';
-import {
-  BoxGeometryScene
-} from './scenes/BoxGeometryScene.js';
+import { OrbitControls } from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
+import { CubePortalLayout } from '../webgl-portals/src/layouts/CubePortalLayout.js';
+import { RandomGeometryScene } from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
+import { BoxGeometryScene } from './scenes/BoxGeometryScene.js';
 
 class MainPortalCube {
   constructor(target) {
