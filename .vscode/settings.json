@@ -1,22 +1,12 @@
 {
-  // Respect .editorconfig settings
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
 
-  // JavaScript specific
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.defaultFormatter": null
   },
-
-  // Disable formatters that might override indentation
   "editor.formatOnSave": false,
-
-  // If you want to enable format on save with js-beautify later:
-  // "editor.formatOnSave": true,
-  // "[javascript]": {
-  //   "editor.defaultFormatter": "HookyQR.beautify"
-  // }
 }
