@@ -2,39 +2,30 @@
 
 Main website for [bryce.me](https://bryce.me) - a personal portfolio website featuring an interactive WebGL portal cube and information about my work in computer vision, photography, and graphics.
 
-## Features
-
 - **Interactive 3D Portal Cube**: Built with Three.js and the custom [webgl-portals](https://github.com/bryce-evans/webgl-portals) framework
-- **Hover Interactions**: Objects inside portals highlight and "jiggle" when hovered over
+- **Hover Interactions**: Objects inside portals highlight ad/or jiggle when hovered over
 - **Responsive Design**: Works on desktop and mobile devices
-- **Static Site**: No build step required, can be deployed to any static hosting
 
-## Tech Stack
-
-- **Three.js** (r181) - 3D graphics and rendering
-- **WebGL Portals** - Custom portal rendering framework (git submodule)
-- **Vanilla JavaScript** (ES6 modules) - No framework dependencies
-- **CSS3** - Responsive styling with watercolor texture backgrounds
 
 ## Project Structure
 
 ```
 main-website/
-├── index.html              # Main landing page
-├── css/                    # Stylesheets
+├── index.html             # Main landing page
+├── css/                   # Stylesheets
 │   ├── main.css           # Main styles
 │   ├── fadein.css         # Fade-in animations
 │   └── skew.css           # Skew effects
-├── images/                 # Images and icons
+├── images/                # Images and icons
 │   ├── favicon.ico
 │   └── *.jpg, *.png, *.svg
-├── js/                     # JavaScript modules
-│   ├── MainPortalCube.js  # Main portal cube setup
+├── js/                       # JavaScript modules
+│   ├── MainPortalCube.js     # Main portal cube setup
 │   ├── PortalHoverManager.js # Hover interaction system
-│   └── scenes/            # Portal scene definitions
-├── fonts/                  # Custom fonts
-├── icons/                  # Social media icons
-├── webgl-portals/         # Git submodule (portal framework)
+│   └── scenes/               # Portal scene definitions
+├── fonts/                    # Custom fonts
+├── icons/                    # Social media icons
+├── webgl-portals/            # Git submodule (portal framework)
 ├── why-zh.html
 ├── eulogy-for-a-cat.html
 ├── mycolor.html
