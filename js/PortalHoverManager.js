@@ -213,7 +213,8 @@ class PortalHoverManager {
       }
     }
 
-    this.updateHoverEffects();
+    // highlight hovered objects.
+    // this.updateHoverEffects();
   }
 
   updateHoverEffects() {
