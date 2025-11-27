@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import {PortalMesh} from '../webgl-portals/src/PortalMesh.js';
+import {
+  PortalMesh
+} from '../webgl-portals/src/PortalMesh.js';
 
 /**
  * Manages hover interactions for objects inside portal scenes.
@@ -13,8 +15,14 @@ class PortalHoverManager {
 
     this.raycaster = new THREE.Raycaster();
     // Initialize mouse off-screen so nothing is highlighted on load
-    this.mousePosition = { x: -100000, y: -100000 };
-    this.previousMousePosition = { x: -100000, y: -100000 };
+    this.mousePosition = {
+      x: -100000,
+      y: -100000
+    };
+    this.previousMousePosition = {
+      x: -100000,
+      y: -100000
+    };
     this.mouseHasEntered = false;
 
     this.hoveredObject = null;
@@ -78,9 +86,8 @@ class PortalHoverManager {
     // Filter out room/background objects (they use BackSide material)
     if (!object.material) return false;
 
-    const materials = Array.isArray(object.material)
-      ? object.material
-      : [object.material];
+    const materials = Array.isArray(object.material) ?
+      object.material : [object.material];
 
     // Room objects use BackSide rendering
     return !materials.some(mat => mat.side === THREE.BackSide);
@@ -236,9 +243,8 @@ class PortalHoverManager {
     if (!this.isInnerGeometry(object)) return;
 
     // Handle both single material and material arrays
-    const materials = Array.isArray(object.material)
-      ? object.material
-      : [object.material];
+    const materials = Array.isArray(object.material) ?
+      object.material : [object.material];
 
     materials.forEach(material => {
       if (isHovered) {
@@ -286,4 +292,6 @@ class PortalHoverManager {
   }
 }
 
-export { PortalHoverManager };
+export {
+  PortalHoverManager
+};
