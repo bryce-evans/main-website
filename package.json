@@ -10,7 +10,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "js-beautify --replace --config .jsbeautifyrc js/*.js js/**/*.js"
+    "format": "npm run format:js && npm run format:html",
+    "format:js": "js-beautify --replace --config .jsbeautifyrc js/*.js js/**/*.js",
+    "format:html": "html-beautify --replace --config .jsbeautifyrc *.html"
   },
   "repository": {
     "type": "git",
