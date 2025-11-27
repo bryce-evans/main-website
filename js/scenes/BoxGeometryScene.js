@@ -1,5 +1,5 @@
 class BoxGeometryScene extends THREE.Scene {
-  constructor(options={}) {
+  constructor(options = {}) {
     super(options);
     // Size of dummy objects
     this.size = options.size || 1;
@@ -46,7 +46,6 @@ class BoxGeometryScene extends THREE.Scene {
     this.addPointLight(blue, [-3, 3, -10], 1200);
     this.add(new THREE.AmbientLight(blue));
 
-
     // // Much brighter dramatic lighting
     // this.addPointLight(white, [8, 10, 6], 178.0);
     // this.addPointLight(white, [-8, -2, -6], 30.0);
@@ -66,4 +65,6 @@ class BoxGeometryScene extends THREE.Scene {
   }
 }
 
-export {BoxGeometryScene};
+export {
+  BoxGeometryScene
+};

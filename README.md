@@ -2,39 +2,30 @@
 
 Main website for [bryce.me](https://bryce.me) - a personal portfolio website featuring an interactive WebGL portal cube and information about my work in computer vision, photography, and graphics.
 
-## Features
-
 - **Interactive 3D Portal Cube**: Built with Three.js and the custom [webgl-portals](https://github.com/bryce-evans/webgl-portals) framework
-- **Hover Interactions**: Objects inside portals highlight and "jiggle" when hovered over
+- **Hover Interactions**: Objects inside portals highlight ad/or jiggle when hovered over
 - **Responsive Design**: Works on desktop and mobile devices
-- **Static Site**: No build step required, can be deployed to any static hosting
 
-## Tech Stack
-
-- **Three.js** (r181) - 3D graphics and rendering
-- **WebGL Portals** - Custom portal rendering framework (git submodule)
-- **Vanilla JavaScript** (ES6 modules) - No framework dependencies
-- **CSS3** - Responsive styling with watercolor texture backgrounds
 
 ## Project Structure
 
 ```
 main-website/
-├── index.html              # Main landing page
-├── css/                    # Stylesheets
+├── index.html             # Main landing page
+├── css/                   # Stylesheets
 │   ├── main.css           # Main styles
 │   ├── fadein.css         # Fade-in animations
 │   └── skew.css           # Skew effects
-├── images/                 # Images and icons
+├── images/                # Images and icons
 │   ├── favicon.ico
 │   └── *.jpg, *.png, *.svg
-├── js/                     # JavaScript modules
-│   ├── MainPortalCube.js  # Main portal cube setup
+├── js/                       # JavaScript modules
+│   ├── MainPortalCube.js     # Main portal cube setup
 │   ├── PortalHoverManager.js # Hover interaction system
-│   └── scenes/            # Portal scene definitions
-├── fonts/                  # Custom fonts
-├── icons/                  # Social media icons
-├── webgl-portals/         # Git submodule (portal framework)
+│   └── scenes/               # Portal scene definitions
+├── fonts/                    # Custom fonts
+├── icons/                    # Social media icons
+├── webgl-portals/            # Git submodule (portal framework)
 ├── why-zh.html
 ├── eulogy-for-a-cat.html
 ├── mycolor.html
@@ -50,18 +41,41 @@ main-website/
 
 ### Installation
 
-Initialize and checkout submodules:
+1. Clone the repository:
+```bash
+git clone https://github.com/bryce-evans/main-website.git
+cd main-website
+```
+
+2. Initialize and checkout submodules:
 ```bash
 git submodule update --init --recursive
 git submodule foreach --recursive git checkout master
+```
+
+3. Install development dependencies:
+```bash
+npm install
+```
+
+**Note on Dependencies**: This project uses npm for development tooling (linting, formatting). Dependencies are managed via:
+- `package.json` - defines direct dependencies with version ranges
+- `package-lock.json` - locks exact versions for reproducible installs across all environments
+- Both files are committed to version control, while `node_modules/` is gitignored
+
+The lock file ensures everyone on the team gets identical dependency versions. After a fresh clone, run `npm install` to recreate the `node_modules/` folder with the exact versions specified in `package-lock.json`.
+
+### Development Scripts
+
+```bash
+# Format JavaScript files using js-beautify
+npm run format
 ```
 
 ### Running Locally
 
 You need to serve the site through a web server (not just opening `index.html` directly) because ES6 modules require proper MIME types and CORS headers.
 
-
-# Create server to serve to http://localhost:8000
 ```bash
 # Option 1: Python
 python3 -m http.server 8000
@@ -69,6 +83,8 @@ python3 -m http.server 8000
 # Option 2: Node
 npx http-server
 ```
+
+Then open http://localhost:8000 in your browser.
 
 ### Debug Mode
 
