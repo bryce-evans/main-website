@@ -50,18 +50,41 @@ main-website/
 
 ### Installation
 
-Initialize and checkout submodules:
+1. Clone the repository:
+```bash
+git clone https://github.com/bryce-evans/main-website.git
+cd main-website
+```
+
+2. Initialize and checkout submodules:
 ```bash
 git submodule update --init --recursive
 git submodule foreach --recursive git checkout master
+```
+
+3. Install development dependencies:
+```bash
+npm install
+```
+
+**Note on Dependencies**: This project uses npm for development tooling (linting, formatting). Dependencies are managed via:
+- `package.json` - defines direct dependencies with version ranges
+- `package-lock.json` - locks exact versions for reproducible installs across all environments
+- Both files are committed to version control, while `node_modules/` is gitignored
+
+The lock file ensures everyone on the team gets identical dependency versions. After a fresh clone, run `npm install` to recreate the `node_modules/` folder with the exact versions specified in `package-lock.json`.
+
+### Development Scripts
+
+```bash
+# Format JavaScript files using js-beautify
+npm run format
 ```
 
 ### Running Locally
 
 You need to serve the site through a web server (not just opening `index.html` directly) because ES6 modules require proper MIME types and CORS headers.
 
-
-# Create server to serve to http://localhost:8000
 ```bash
 # Option 1: Python
 python3 -m http.server 8000
@@ -69,6 +92,8 @@ python3 -m http.server 8000
 # Option 2: Node
 npx http-server
 ```
+
+Then open http://localhost:8000 in your browser.
 
 ### Debug Mode
 
