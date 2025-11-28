@@ -81,6 +81,13 @@ body {
     margin: 4em auto -4em auto;
 }
 
+.icon-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
 #icons>a>img {
     transition-duration: 200ms;
     padding: 1em;
@@ -92,6 +99,25 @@ body {
     transition-duration: 200ms;
     /* transform-origin: bottom center; */
     transform: rotate(30deg);
+}
+
+.icon-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin-top: -0.5em;
+    opacity: 0;
+    transition: opacity 200ms;
+    pointer-events: none;
+}
+
+.icon-link:hover {
+    text-decoration: none;
+}
+
+.icon-link:hover .icon-label {
+    opacity: 1;
+    text-decoration: none;
 }
 
 .gray {
@@ -890,5 +916,10 @@ h3.inline {
 
     #icons>a>img:hover {
         transform: rotate(0deg);
+    }
+
+    .icon-label {
+        opacity: 1;
+        font-size: 18px;
     }
 }
