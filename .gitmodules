@@ -1,3 +1,6 @@
 [submodule "webgl-portals"]
 	path = webgl-portals
 	url = https://github.com/bryce-evans/webgl-portals
+[submodule "resume"]
+	path = resume
+	url = git@github.com:bryce-evans/HTML-Resume.git
