@@ -144,6 +144,9 @@ class MainPortalCube {
         }.bind(this));
     }
     render() {
+        const turn_time = 1500;
+        const turn_angle = 5;
+
         const camera = this.camera;
         const renderer = this.renderer;
         const controls = this.controls;
@@ -154,21 +157,30 @@ class MainPortalCube {
         // Rotate in new scenes as the cube moves around.
         this.seen = this.portal.children.map(face => face.isVisible(this.camera));
 
+        // Track which scenes have ever been seen (initialized to false)
+        this.sceneSeen = [false, false, false, false, false, false];
+
         this.swapScenes = function() {
+            // Mark scenes as seen when they become visible
+            // Only swap scenes that have been seen
             let visible = this.portal.children.map(face => face.isVisible(this.camera));
-            for (var i = 0; i < 6; i++) {
-                if (!visible[i] && this.seen[i]) {
-                    let old_scene = this.portal.scenes[i];
+            visible.forEach((isVisible, i) => { if (isVisible) this.sceneSeen[i] = true; });
+   
+            const swapIfNeeded = (isVisible, i) => {
+                if (!isVisible && this.seen[i] && this.sceneSeen[i]) {
                     let new_scene = new RandomGeometryScene({ 'size': 5 });
                     this.portal.scenes[i] = new_scene;
                     this.portal.children[i].material.scene = new_scene;
-                    //delete old;
                 }
-            }
+            };
+            visible.forEach(swapIfNeeded);
             this.seen = visible;
         }
 
-        setInterval(this.swapScenes.bind(this), 500);
+        // Delay scene swapping until after initial rotation animation
+        setTimeout(() => {
+            setInterval(this.swapScenes.bind(this), 500);
+        }, turn_time);
 
         // Used to rotate the cube automatically.
         const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
@@ -177,9 +189,6 @@ class MainPortalCube {
         let first_frame = true;
         let last_frame = false;
         var start_time = 0.0;
-
-        let turn_time = 2200;
-        let turn_angle = 0.7;
 
         function render_loop(time_ms) {
 
