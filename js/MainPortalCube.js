@@ -5,6 +5,7 @@ import { RandomGeometryScene } from '../webgl-portals/examples/js/utils/RandomGe
 import { BoxGeometryScene } from './scenes/BoxGeometryScene.js';
 import { CornellBoxScene } from './scenes/CornellBoxScene.js';
 import { PortalHoverManager } from './PortalHoverManager.js';
+import { CubePlaybook } from './CubePlaybook.js';
 
 
 class MainPortalCube {
@@ -53,8 +54,6 @@ class MainPortalCube {
         this.controls.enablePan = false;
         window.controls = this.controls;
 
-        const cube_scenes = [];
-
         /*
             POSITIONS OF SCENES ON THE CUBE FROM INITIAL VIEW
                            .
@@ -73,30 +72,11 @@ class MainPortalCube {
 
              */
 
-        // Right face
-        // Green room on right
-        // cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 137, 'geo_hue': 80 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
+        // Create scene playbook to manage scene progression
+        this.playbook = new CubePlaybook();
 
-        // Left face
-        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
-
-        // Top face
-        // cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 350, 'geo_hue': 53 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
-
-        // Bottom face
-        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
-
-        // Front face
-        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
-
-        // Back face
-        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
-        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
+        // Get initial scenes from playbook
+        const cube_scenes = this.playbook.getInitialScenes();
 
         const portal_render_resolution = 1024 * window.devicePixelRatio;
         const portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, { size: 10, resolution_width: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256 });
@@ -172,10 +152,11 @@ class MainPortalCube {
             // Only swap scenes that have been seen
             let visible = this.portal.children.map(face => face.isVisible(this.camera));
             visible.forEach((isVisible, i) => { if (isVisible) this.sceneSeen[i] = true; });
-   
+
             const swapIfNeeded = (isVisible, i) => {
                 if (!isVisible && this.seen[i] && this.sceneSeen[i]) {
-                    let new_scene = new RandomGeometryScene({ 'size': 5 });
+                    // Get next scene from playbook
+                    let new_scene = this.playbook.getNextScene();
                     this.portal.scenes[i] = new_scene;
                     this.portal.children[i].material.scene = new_scene;
                 }
