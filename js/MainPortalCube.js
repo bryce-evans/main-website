@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from '../webgl-portals/modules/three.js/examples/jsm/controls/OrbitControls.js';
 import { CubePortalLayout } from '../webgl-portals/src/layouts/CubePortalLayout.js';
 import { RandomGeometryScene } from '../webgl-portals/examples/js/utils/RandomGeometryScene.js';
-import { EncoderDecoderScene } from './scenes/EncoderDecoderScene.js';
 import { BoxGeometryScene } from './scenes/BoxGeometryScene.js';
+import { CornellBoxScene } from './scenes/CornellBoxScene.js';
 import { PortalHoverManager } from './PortalHoverManager.js';
 
 
@@ -73,23 +73,23 @@ class MainPortalCube {
 
              */
 
-        // Green room on right
-        cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 137, 'geo_hue': 80 }));
+        // Right face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
-        // opposite side
-        cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
+        // Left face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
-        // Red room on top
-        cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 350, 'geo_hue': 53 }));
+        // Top face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
-        // opposite side
-        cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
+        // Bottom face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
-        // Blue room on left
-        cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 219, 'geo_hue': 330 }));
+        // Front face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
-        // opposite side
-        cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
+        // Back face
+        cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         const portal_render_resolution = 1024 * window.devicePixelRatio;
         const portal_cube = new CubePortalLayout(cube_scenes, camera, this.renderer, { size: 10, resolution_width: portal_render_resolution, resolution_height: portal_render_resolution, debug_height: 256, debug_width: 256 });
@@ -233,7 +233,6 @@ class MainPortalCube {
 
                 camera.position.x = new_x;
                 camera.position.z = new_z;
-
 
                 // Runs from 1-0, decellerating
                 let progress = 1 - time_ms / turn_time;
