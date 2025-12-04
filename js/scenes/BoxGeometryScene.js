@@ -1,3 +1,5 @@
+import { JiggleHoverBehavior } from '../utils/JiggleHoverBehavior.js';
+
 class BoxGeometryScene extends THREE.Scene {
   constructor(options = {}) {
     super(options);
@@ -5,6 +7,9 @@ class BoxGeometryScene extends THREE.Scene {
     this.size = options.size || 1;
     this.room_hue = options.room_hue || 0;
     this.geo_hue = options.geo_hue || 180;
+
+    // Add jiggle hover behavior
+    this.jiggleBehavior = new JiggleHoverBehavior(this);
 
     if (options.custom_objects) {
       for (var i = 0; i < options.custom_objects.length; i++) {
@@ -62,6 +67,19 @@ class BoxGeometryScene extends THREE.Scene {
     const mat = this.makePhongMaterial(this.geo_hue);
     const subject = new THREE.Mesh(geo, mat);
     this.add(subject);
+  }
+
+  // Hover interaction methods - called by PortalHoverManager
+  handleHover(object, mouseMoveAmount) {
+    if (this.jiggleBehavior) {
+      this.jiggleBehavior.increaseJiggle(object, mouseMoveAmount);
+    }
+  }
+
+  updateAnimations(deltaTime) {
+    if (this.jiggleBehavior) {
+      this.jiggleBehavior.updateAnimations(deltaTime);
+    }
   }
 }
 

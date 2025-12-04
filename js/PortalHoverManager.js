@@ -21,12 +21,6 @@ class PortalHoverManager {
     this.previousHovered = null;
     this.hoveredPortal = null;
 
-    // Animation parameters
-    this.jiggleDecayHalfLife = 0.5; // Time in seconds for jiggle to halve
-    this.jiggleIncreaseAmount = 0.25;
-    this.maxJiggle = 3.5;
-    this.cyclesPerSecond = 2.5;
-
     this.clock = new THREE.Clock();
 
     this.setupEventListeners();
@@ -63,9 +57,12 @@ class PortalHoverManager {
     const dy = this.mousePosition.y - this.previousMousePosition.y;
     const mouseMoveAmount = Math.sqrt(dx * dx + dy * dy);
 
-    // Increase jiggle on hovering object if mouse is moving
+    // Delegate hover handling to the object's scene if it has handleHover method
     if (this.hoveredObject && mouseMoveAmount > 0.001 && mouseMoveAmount < 100) {
-      this.increaseJiggle(this.hoveredObject, mouseMoveAmount);
+      const objectScene = this.findSceneForObject(this.hoveredObject);
+      if (objectScene && typeof objectScene.handleHover === 'function') {
+        objectScene.handleHover(this.hoveredObject, mouseMoveAmount);
+      }
     }
   }
 
@@ -74,111 +71,39 @@ class PortalHoverManager {
     this.updateJiggleAnimations();
   }
 
-  isInnerGeometry(object) {
-    // Filter out room/background objects (they use BackSide material)
-    if (!object.material) return false;
-
-    const materials = Array.isArray(object.material)
-      ? object.material
-      : [object.material];
-
-    // Room objects use BackSide rendering
-    return !materials.some(mat => mat.side === THREE.BackSide);
-  }
-
-  initializeJiggle(object) {
-    if (!object._jiggle) {
-      object._jiggle = 1.0;
-      object._jigglePhase = 0.0;
-      object._originalScale = object.scale.clone();
+  findSceneForObject(object) {
+    // Check if object is in main scene
+    if (this.scene.getObjectById(object.id)) {
+      return this.scene;
     }
-  }
 
-  increaseJiggle(object, amount) {
-    if (!this.isInnerGeometry(object)) return;
-
-    this.initializeJiggle(object);
-
-    const oldJiggle = object._jiggle;
-
-    // Non-linear growth: easy to start, hard to max out
-    // Calculate how close we are to max (0 = at baseline, 1 = at max)
-    const progressToMax = (object._jiggle - 1.0) / (this.maxJiggle - 1.0);
-
-    // Cubic falloff - gets harder to increase as jiggle grows
-    const scalingFactor = Math.pow(1 - progressToMax, 3);
-
-    // Apply scaled increase
-    object._jiggle += amount * this.jiggleIncreaseAmount * scalingFactor;
-
-    // Cap at max value
-    object._jiggle = Math.min(object._jiggle, this.maxJiggle);
-
-    // Debug
-    if (object._jiggle > oldJiggle) {
-      console.log('Jiggle:', object._jiggle.toFixed(2), 'scaling:', scalingFactor.toFixed(2));
+    // Check portal scenes
+    if (this.portalCube && this.portalCube.scenes) {
+      for (const portalScene of this.portalCube.scenes) {
+        if (portalScene && portalScene.getObjectById && portalScene.getObjectById(object.id)) {
+          return portalScene;
+        }
+      }
     }
+
+    return null;
   }
 
   updateJiggleAnimations() {
     const deltaTime = this.clock.getDelta();
 
-    // Update objects in main scene
-    this.scene.traverse((obj) => {
-      if (obj._jiggle !== undefined) {
-        this.applyJiggleAnimation(obj, deltaTime);
-      }
-    });
+    // Delegate animation updates to main scene if it has the method
+    if (typeof this.scene.updateAnimations === 'function') {
+      this.scene.updateAnimations(deltaTime);
+    }
 
-    // Update objects in portal scenes
+    // Delegate animation updates to portal scenes if they have the method
     if (this.portalCube && this.portalCube.scenes) {
       this.portalCube.scenes.forEach(portalScene => {
-        if (portalScene && portalScene.traverse) {
-          portalScene.traverse((obj) => {
-            if (obj._jiggle !== undefined) {
-              this.applyJiggleAnimation(obj, deltaTime);
-            }
-          });
+        if (portalScene && typeof portalScene.updateAnimations === 'function') {
+          portalScene.updateAnimations(deltaTime);
         }
       });
-    }
-  }
-
-  applyJiggleAnimation(object, deltaTime) {
-    if (!object._originalScale) return;
-
-    // Exponential decay using half-life
-    // jiggle(t) = 1 + (jiggle(0) - 1) * 0.5^(t / halfLife)
-    const decayFactor = Math.pow(0.5, deltaTime / this.jiggleDecayHalfLife);
-    object._jiggle = 1.0 + (object._jiggle - 1.0) * decayFactor;
-
-    // Update phase - completes cycles based on cyclesPerSecond
-    object._jigglePhase += deltaTime * Math.PI * 2 * this.cyclesPerSecond;
-    object._jigglePhase = object._jigglePhase % (Math.PI * 2);
-
-    // Oscillation from -1 to +1
-    const oscillation = Math.sin(object._jigglePhase);
-
-    // Exponential scale: 2^(log2(jiggle) * sin(phase))
-    // If jiggle=2: scale varies from 0.5 to 2.0
-    // If jiggle=4: scale varies from 0.25 to 4.0
-    const logJiggle = Math.log2(object._jiggle);
-    const scaleMultiplier = Math.pow(2, logJiggle * oscillation);
-
-    // Apply scale
-    object.scale.copy(object._originalScale).multiplyScalar(scaleMultiplier);
-
-    // Debug - log scale changes
-    if (Math.abs(scaleMultiplier - 1.0) > 0.01) {
-      console.log('Jiggle:', object._jiggle.toFixed(3), 'Scale:', scaleMultiplier.toFixed(3));
-    }
-
-    // Clean up only when jiggle is very close to baseline
-    if (object._jiggle <= 1.001 && object !== this.hoveredObject) {
-      object.scale.copy(object._originalScale);
-      delete object._jiggle;
-      delete object._jigglePhase;
-      delete object._originalScale;
     }
   }
 

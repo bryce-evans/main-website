@@ -74,21 +74,28 @@ class MainPortalCube {
              */
 
         // Right face
+        // Green room on right
+        // cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 137, 'geo_hue': 80 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         // Left face
+        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         // Top face
+        // cube_scenes.push(new BoxGeometryScene({ 'size': 5, 'room_hue': 350, 'geo_hue': 53 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         // Bottom face
+        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         // Front face
+        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         // Back face
+        // cube_scenes.push(new RandomGeometryScene({ 'size': 5 }));
         cube_scenes.push(new CornellBoxScene({ 'size': 5 }));
 
         const portal_render_resolution = 1024 * window.devicePixelRatio;
