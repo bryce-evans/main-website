@@ -155,8 +155,8 @@ class MainPortalCube {
 
             const swapIfNeeded = (isVisible, i) => {
                 if (!isVisible && this.seen[i] && this.sceneSeen[i]) {
-                    // Get next scene from playbook
-                    let new_scene = this.playbook.getNextScene();
+                    // Get scene for this specific side from playbook
+                    let new_scene = this.playbook.getSceneForSide(i);
                     this.portal.scenes[i] = new_scene;
                     this.portal.children[i].material.scene = new_scene;
                 }
